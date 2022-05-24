@@ -15,7 +15,7 @@ if (toss === 'head') {
 // more than two condition - (if-else if-else)
 let number = 7;
 if (number > 7) {
-  console.log('grether than 7');
+  console.log('greater than 7');
 } else if (number < 7) {
   console.log('less than 7');
 } else {
