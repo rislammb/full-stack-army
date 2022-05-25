@@ -14,6 +14,7 @@ for (let i = 0; i < arr.length; i++) {
 arr.length -= count;
 console.log(arr);
 
+const arr2 = [1, 2, 3, null, false, 'ddad', 4, 5, '', 'stack', 6, 7];
 // filter number from array with declarative paradigm
-const result = arr.filter(item => typeof item === 'number');
+const result = arr2.filter(item => typeof item === 'number');
 console.log(result);
