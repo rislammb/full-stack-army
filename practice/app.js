@@ -1,52 +1,35 @@
-// Utility function for generate random id
-function uuidv4() {
-  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c) => {
-    const r = (Math.random() * 16) | 0;
-    const v = c === 'x' ? r : (r & 0x3) | 0x8;
-    return v.toString(16);
-  });
-};
+const arr = [1, 2, false, 3, '', 4, 5, NaN, 6];
 
-const students = {
-  'e86df047-c2b6-4e0f-8faf-19a2a76d224b': {
-    id: 'e86df047-c2b6-4e0f-8faf-19a2a76d224b',
-    name: 'Abdullah',
-    email: 'abdullah@email.com'
-  },
-  'f8aec729-17cc-4b5f-a0e5-6f5cdffa491b': {
-    id: 'f8aec729-17cc-4b5f-a0e5-6f5cdffa491b',
-    name: 'Al-Amin',
-    email: 'alamin@email.com'
-  },
-  '41613d57-f175-4bc6-9eae-af155ab4d524': {
-    id: '41613d57-f175-4bc6-9eae-af155ab4d524',
-    name: 'Muhammad',
-    email: 'muhammad@email.com'
+// // map - return same length array
+// const strArr = arr.map(val => val.toString());
+// console.log(strArr);
+
+// // filter - return wanted item array
+// const filtered = arr.filter(val => val);
+// console.log(filtered);
+
+// // combine map and filter
+// const str = arr.filter(val => val).map(val => val.toString());
+// console.log(str);
+
+// const arr2 = [1, 2, 3, 4, 5];
+// const sum = arr2.reduce((a, b) => a + b);
+// console.log(sum);
+
+// // reduce return - '12false345NaN6'
+// const str = arr.reduce((acc, cur) =>{
+//   acc += cur.toString()
+//   return acc
+// }, '');
+
+// reduce return - [1, 2, 3, 4, 5, 6]
+const result = arr.reduce((acc, cur, index) => {
+  if (index === 0) acc += '[';
+  if (cur) {
+    acc += cur.toString() + (index === arr.length - 1 ? '' : ', ');
   }
-};
+  if (index === arr.length - 1) acc += ']';
+  return acc
+}, '')
 
-// Add item to object
-const std = {
-  id: 'fa32c45f-e69e-4cae-a75f-254ecb959db3',
-  name: 'Ahmad',
-  email: 'ahmad@email.com'
-}
-students[std.id] = std;
-
-// Update item from object
-const idForUpdate = 'f8aec729-17cc-4b5f-a0e5-6f5cdffa491b';
-const updateData = {
-  name: 'Abul Kasem',
-  email: 'akasem@email.com'
-}
-students[idForUpdate] = {
-  ...students[idForUpdate],
-  ...updateData
-}
-// console.log(students);
-
-// delete from object
-delete students[idForUpdate];
-
-console.log(students);
-
+console.log(result);
