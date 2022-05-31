@@ -38,6 +38,6 @@ const index = arr.findIndex(item => item.id === 4000000);
 arr.splice(index,);
 console.timeEnd('delete from array');
 
-console.time('delete object');
+console.time('delete from object');
 delete obj[4000000];
-console.timeEnd('delete object');
+console.timeEnd('delete from object');

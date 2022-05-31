@@ -33,7 +33,7 @@ const std = {
 }
 students[std.id] = std;
 
-// Update item from object
+// Update item in object
 const idForUpdate = 'f8aec729-17cc-4b5f-a0e5-6f5cdffa491b';
 const updateData = {
   name: 'Abul Kasem',
@@ -43,7 +43,6 @@ students[idForUpdate] = {
   ...students[idForUpdate],
   ...updateData
 }
-// console.log(students);
 
 // delete from object
 delete students[idForUpdate];
