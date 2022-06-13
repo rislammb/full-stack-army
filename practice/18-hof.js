@@ -1,4 +1,4 @@
-// Higher order function
+// Higher order function and closuer
 
 // // ###### 1 ######
 // function generateTwoRandom(max, whatDoYouWant) {
@@ -29,7 +29,9 @@ function power(p) {
   }
 }
 
+// When invoke function power variable sqr save p = 2, it is closuer
 const sqr = power(2);
+// When invoke function power variable cube save p = 2, it is closuer
 const cube = power(3);
 
 console.log('square', sqr(3));
