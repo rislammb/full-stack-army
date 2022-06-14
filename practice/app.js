@@ -1,24 +1,17 @@
-// // ##### 1. _.chunk function
-// const chunk = (arr, size) => {
-// if (size > 0) {
-//     const newArr = [];
-//     for (let i = 0; i < arr.length; i += size) {
-//       newArr.push(arr.slice(i, i + size));
-//     }
-//     return newArr;
-//   } else return []
-// };
-// const array = ['a', 'b', 'c', 'd'];
-// const result = chunk(array, 7);
-// console.log(result);
-
-// ##### 2. _.compact function
-const compact = (arr) => {
-  return arr.reduce((acc, cur) => {
-    if (cur) acc.push(cur);
-    return acc;
-  }, [])
+// ##### 5. _.difference function
+const drop = (arr, n=1) => {
+  if (arr && arr.length > 0) {
+      return arr.reduce((acc, cur, index) => {
+        if (index > n - 1) {
+          acc.push(cur);
+        }
+        return acc;
+      }, [])
+  } else {
+    return [];
+  }
 }
-const array = [1, 0, 2, false, 'test', null, 3, '', undefined, 4, NaN];
-const result = compact(array);
+const array = [1, 2, 5, 9, 3];
+const result = drop(array, 3);
 console.log(result);
+
