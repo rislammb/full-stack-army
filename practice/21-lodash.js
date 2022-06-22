@@ -1,5 +1,5 @@
 // ##### 1. _.chunk function
-const chunk = (arr, size=1) => {
+const chunk = (arr, size = 1) => {
   if (arr && arr.length > 0) {
     const newArr = [];
     for (let i = 0; i < arr.length; i += size) {
@@ -32,7 +32,7 @@ const concat = (arr, ...values) => {
       if (values[i].length > 0) {
         for (let j = 0; j < values[i].length; j++) {
           newArr.push(values[i][j]);
-        }   
+        }
       } else {
         newArr.push(values[i]);
       }
@@ -49,21 +49,21 @@ const concat = (arr, ...values) => {
 // ##### 4. _.difference function
 const difference = (arr, values) => {
   if (arr && arr.length > 0) {
-      if (values && values.length > 0) {
-        let newArr = [];
-        for (let i = 0; i < arr.length; i++) {
-          let equal = false;
-          for (let j = 0; j < values.length; j++) {
-            if (arr[i] === values[j]) {
-              equal = true
-            }
+    if (values && values.length > 0) {
+      let newArr = [];
+      for (let i = 0; i < arr.length; i++) {
+        let equal = false;
+        for (let j = 0; j < values.length; j++) {
+          if (arr[i] === values[j]) {
+            equal = true
           }
-          if (!equal) newArr.push(arr[i]);
         }
-        return newArr;
-      } else {
-        return arr
+        if (!equal) newArr.push(arr[i]);
       }
+      return newArr;
+    } else {
+      return arr
+    }
   } else {
     return []
   }
@@ -73,30 +73,30 @@ const difference = (arr, values) => {
 // console.log(result);
 
 // ##### 5. _.drop function
-const drop = (arr, n=1) => {
+const drop = (arr, n = 1) => {
   if (arr && arr.length > 0) {
-      // method 1
-      const newArr = [...arr];
-      for (let i = 0; i < n; i++) {
-        newArr.shift();
-      }
-      return newArr;
+    // method 1
+    const newArr = [...arr];
+    for (let i = 0; i < n; i++) {
+      newArr.shift();
+    }
+    return newArr;
 
-      // // method 2
-      // return arr.reduce((acc, cur, index) => {
-      //   if (index > n - 1) {
-      //     acc.push(cur);
-      //   }
-      //   return acc;
-      // }, []);
-  } else return []; 
+    // // method 2
+    // return arr.reduce((acc, cur, index) => {
+    //   if (index > n - 1) {
+    //     acc.push(cur);
+    //   }
+    //   return acc;
+    // }, []);
+  } else return [];
 }
 // const array = [1, 2, 5, 8, 9, 3];
 // const result = drop(array, 3);
 // console.log(result);
 
 // ##### 6. _.dropRight function
-const dropRight = (arr, n=1) => {
+const dropRight = (arr, n = 1) => {
   if (arr && arr.length > 0) {
     // method 1
     const newArr = [...arr];
@@ -112,7 +112,7 @@ const dropRight = (arr, n=1) => {
     //   }
     //   return acc;
     // }, []);
-  } else return []; 
+  } else return [];
 }
 // const array = [1, 2, 5, 8, 9, 3];
 // const result = dropRight(array, 2);
@@ -125,6 +125,50 @@ const fill = (arr, val, start = 0, end = arr.length) => {
   }
   return arr;
 }
-const array = [4, 6, 8, 10, 7];
-const result = fill(array, '*', 1, 3);
+// const array = [4, 6, 8, 10, 7];
+// const result = fill(array, '*', 1, 3);
+// console.log(result);
+
+// ##### 8. _.findIndex function
+function findIndex(array, value, fromIndex = 0) {
+  let index = -1;
+  for (let i = fromIndex; i < array.length; i++) {
+    if (typeof value === 'function') {
+      if (value(array[i])) {
+        index = i;
+        break;
+      }
+    } else if (typeof value === 'object') {
+      if (value.length) {
+        if (value[1] === array[i][value[0]]) {
+          index = i;
+          break;
+        }
+      } else {
+        let bool = [];
+        for (const v in value) {
+          if (value[v] !== array[i][v]) {
+            bool.push(false);
+          }
+        }
+        if (bool.length === 0) {
+          index = i;
+          break;
+        }
+      }
+    } else if (typeof value === 'string') {
+      if (array[i][value]) {
+        index = i;
+        break;
+      }
+    }
+  }
+  return index;
+}
+const users = [
+  { 'user': 'abdullah', 'active': false },
+  { 'user': 'musa', 'active': true },
+  { 'user': 'muhammad', 'active': false },
+]
+const result = findIndex(users, function (o) { return o.user === 'abdullah' });
 console.log(result);
