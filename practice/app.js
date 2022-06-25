@@ -1,7 +1,7 @@
-// ##### 8. _.findIndex function
-function findIndex(array, value, fromIndex = 0) {
+// *** Utility function for find frist/last matched index ***
+function findIndexUtil(array, value, start, fromLast) {
   let index = -1;
-  for (let i = fromIndex; i < array.length; i++) {
+  for (let i = start; fromLast ? i > -1 : i < array.length; fromLast ? i-- : i++) {
     if (typeof value === 'function') {
       if (value(array[i])) {
         index = i;
@@ -35,11 +35,22 @@ function findIndex(array, value, fromIndex = 0) {
   return index;
 }
 
+// ##### 8. _.findIndex function
+function findIndex(array, value, fromIndex = 0) {
+  return findIndexUtil(array, value, fromIndex);
+}
+
 const users = [
   { 'user': 'abdullah', 'active': false },
   { 'user': 'musa', 'active': true },
   { 'user': 'muhammad', 'active': false },
 ]
+// const result = findIndex(users, 'active');
+// console.log(result);
 
-const result = findIndex(users, function (o) { return o.user === 'abdullah' });
+// ##### 9. _.findLastIndex function
+function findLastIndex(array, value, fromIndex = array.length - 1) {
+  return findIndexUtil(array, value, fromIndex, true);
+}
+const result = findLastIndex(users, (o) => o.user === 'muhammad');
 console.log(result);

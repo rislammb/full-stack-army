@@ -129,12 +129,12 @@ const fill = (arr, val, start = 0, end = arr.length) => {
 // const result = fill(array, '*', 1, 3);
 // console.log(result);
 
-// ##### 8. _.findIndex function
-function findIndex(array, value, fromIndex = 0) {
+// *** Utility function for find frist/last matched index ***
+function findIndexUtil(array, value, start, fromLast) {
   let index = -1;
-  for (let i = fromIndex; i < array.length; i++) {
+  for (let i = start; fromLast ? i > -1 : i < array.length; fromLast ? i-- : i++) {
     if (typeof value === 'function') {
-      if (value(array[i])) {
+      if (array[i] && value(array[i])) {
         index = i;
         break;
       }
@@ -165,10 +165,23 @@ function findIndex(array, value, fromIndex = 0) {
   }
   return index;
 }
+
+// ##### 8. _.findIndex function
+function findIndex(array, value, fromIndex = 0) {
+  return findIndexUtil(array, value, fromIndex);
+}
+
 const users = [
   { 'user': 'abdullah', 'active': false },
   { 'user': 'musa', 'active': true },
   { 'user': 'muhammad', 'active': false },
 ]
-const result = findIndex(users, function (o) { return o.user === 'abdullah' });
+// const result = findIndex(users, (o) => o.user === 'muhammad', 3);
+// console.log(result);
+
+// ##### 9. _.findLastIndex function
+function findLastIndex(array, value, fromIndex = array.length - 1) {
+  return findIndexUtil(array, value, fromIndex, true);
+}
+const result = findLastIndex(users, (o) => o.user === 'musa', 5);
 console.log(result);
