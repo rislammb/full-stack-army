@@ -110,7 +110,7 @@ async function getComments(username) {
     const { data: commentedUser } = await axios.get(`${url}/users/?email=${comments[0].email}`);
     console.log(commentedUser);
   } catch (e) {
-    console.log(e.toJSON());
+    console.log('Error found!', e.message);
   }
 }
 
