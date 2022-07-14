@@ -1,53 +1,32 @@
-// ##### 1
-// const arr = [1, 2, 3, 4];
+const axios = require('axios').default;
 
-// let index = 0;
-// function next() {
-//   return arr[index++];
-// }
+const baseUrl = 'https://jsonplaceholder.typicode.com';
 
-// console.log(next());
-// for (let i = 0; i < 5; i++) {
-//   console.log('Hello world!');
-// }
-// console.log(next());
-
-// ##### 2
-// const text = 'Stack';
-// const textIterator = text[Symbol.iterator]();
-
-// while (true) {
-//   const data = textIterator.next();
-//   if (data.done) {
-//     break;
-//   } else {
-//     console.log(data.value);
-//   }
-// }
-
-// ##### 3
-const range = {
-  start: 0,
-  stop: 100,
-  step: 5
+// ###### 1
+async function getUsers() {
+  const { data: users } = await axios.get(`${baseUrl}/users`);
+  return users;
 }
 
-range[Symbol.iterator] = function () {
-  let current = this.start;
-  const stop = this.stop;
-  const step = this.step;
-  return {
-    next() {
-      const obj = {
-        value: current,
-        done: current > stop
-      }
-      current += step
-      return obj
-    }
+async function* getPostsByUser(users) {
+  for (let i = 0; i < users.length; i++) {
+    const { data: posts } = await axios.get(`${baseUrl}/posts?userId=${users[i].id}`);
+    yield posts
   }
 }
 
-for (const v of range) {
-  console.log(v);
-}
+getUsers()
+  .then(async (users) => {
+    // const postsIterator = await getPostsByUser(users);
+    // await postsIterator.next();
+    // await postsIterator.next();
+    // console.log((await postsIterator.next()).value);
+
+    for await (const value of getPostsByUser(users)) {
+      console.log(value.map(post => post.title));
+    }
+  })
+  .catch(() => console.log('Somethings went wrong'))
+
+
+// ###### 2
