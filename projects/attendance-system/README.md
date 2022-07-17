@@ -59,6 +59,7 @@ Profile model -
 StudentAttendace model -
 - userId
 - CreatedAt: DateTime
+- AdminAttendanceId
 
 AdminAttendace model -
 - CreatedAt: DateTime
@@ -73,6 +74,7 @@ Student Endpoints -
 - PATCH /profiles [private]
 - PATCH /profiles/avatar [private]
 - GET /timesheet [private]
+- GET /attendanceStatus [private]
 - GET /attendance [private]
 
 Admin Endpoints -
@@ -90,3 +92,39 @@ Admin Endpoints -
 - GET /timesheet/stats [private]
 - POST /attendance/enable [private]
 - GET /attendance/disable/:attendanceId [private]
+
+## TODO
+- [ ] Create Models
+  - [ ] User
+  - [ ] Profile
+  - [ ] Admin Attendance
+  - [ ] Student Attendance
+- [ ] Authentication
+  - [ ] Registration
+  - [ ] Login
+  - [ ] Change password
+- [ ] Middleware
+  - [ ] Authenticate
+  - [ ] Authorize
+- [ ] Timesheet And Attendance
+  - [ ] Get timesheet
+  - [ ] Get attendance status
+  - [ ] Given attendance
+- [ ] User CURD
+  - [ ] Get User
+  - [ ] Get User by ID
+  - [ ] Create User
+  - [ ] Update User
+  - [ ] Delete User
+  - [ ] Get timesheet by userId
+- [ ] Profile CURD
+  - [ ] Get Profile
+  - [ ] Get Profile by ID
+  - [ ] Create Profile
+  - [ ] Update Profile
+  - [ ] Delete Profile
+- [ ] Admin control over attendance
+  - [ ] Enable Attendance
+  - [ ] Disable Attendance
+- [ ] Generate stats
+  - [ ] Timesheet stats
