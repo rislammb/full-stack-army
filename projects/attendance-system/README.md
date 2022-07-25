@@ -94,11 +94,11 @@ Admin Endpoints -
 - GET /timesheet/stats [private]
 
 ## TODO
-- [ ] Create Models
-  - [ ] User
-  - [ ] Profile
-  - [ ] Admin Attendance
-  - [ ] Student Attendance
+- [ x ] Create Models
+  - [ x ] User
+  - [ x ] Profile
+  - [x] Admin Attendance
+  - [x] Student Attendance
 - [ ] Authentication
   - [ ] Registration
   - [ ] Login
@@ -131,146 +131,262 @@ Admin Endpoints -
 
 
 ## Pseudo code
+
 - ### Registration
-  - name, email, password = input
-  - find user by this email
-  - if user exist - send user already exist error
-  - input validation
-  - if input not valid - send validation error
-  - generate hash password
-  - create user by name, email and hash password
-  - save user to database
-  - generate JWT token
-  - send a success message with user and token
+  start
+  name, email, password = input()
+
+  if name or email or password invalid:
+    return 400 error
+
+  user = find user with email
+  if user found:
+    return 400 error
+
+  hash = hash password
+  user = save name, email and hash to user model
+  return 201
+  end
+
 - ### Login
-  - email, password = input
-  - find user by this email
-  - if user not exist - send user not found error
-  - match password
-  - if password not match - send authentication error
-  - generate JWT token
-  - send a success message with token
+  start
+  email, password = input()
+
+  user = find user with email
+  if user not found:
+    return 400 error
+
+  if password not equal to user.hash
+    return 400 error
+
+  token = generate token using user info
+  return token
+  end
+
 - ### Change password
   - for logged user
-    - id = token
-    - find user by this id
-    - if user not exist - send user not found error
-    - password = input
-    - validate password
-    - if password not valid - send validation error
-    - hash password
-    - update user password with new hashed password
-    - send a success message
+    start
+    id = token
+
+    user = find user with id
+    if user not found:
+      return 400 error
+    
+    password = input()
+    if password invalid:
+      return 400 error
+
+    hash = hash password
+    user = update hash to user model
+    return 201
+    end
+
   - for password forgotted user
-    - email = input
-    - find user by this email
-    - if user not exist - send user not found error
-    - password = input
-    - validate password
-    - if password not valid - send validation error
-    - hash password
-    - update user password with new hashed password
-    - send a success message
+    start
+    email = input()
+
+    user = find user with email
+    if user not found:
+      return 400 error
+
+    password = input()
+    if password invalid:
+      return 400 error
+
+    hash = hash password
+    user = update hash to user model
+    return 201
+    end
+
 - ### Authenticate middleware
-  - token = cookies
-  - if token not found - send unauthenticate error
-  - validate token with time
-  - if toke not valid - send unvalid token error
-  - id = token
-  - find user by this id
-  - if user not exist - send user not found error
-  - invoke next function with user
+  start
+  token = req.headers
+
+  if token not found:
+    return 401 error
+  
+  validate token with time
+  if token invalid:
+    return 401 error
+  
+  id = token()
+  user = find user with id
+  if user not found:
+    return 401 error
+
+  req.body.user = user
+  next()
+  end
+
 - ### Authorize middleware
-  - role = user.role
-  - if permitted role not found - send unauthorize error
-  - invoke next function
+  start
+  user = req.body
+
+  roles = user.roles
+  if permitted role not found:
+    return 403 error
+
+  next()
+  end
+
 - ### Get user timesheet
-  - id = user.id
-  - find timesheet with user id
-  - if timesheet not found - send empty
-  - send timesheet
+  start
+  id = user
+
+  timesheet = find all attendance with id
+  return timesheet
+  end
+
 - ### Get attendance status
-  - find live admin attendance from databse
-  - if attendance not found - send disable status
-  - find user by id from live admin attendance
-  - if user attendance found - send disable status
-  - send enable status
+  start
+  attendance = find live admin attendance
+  if attendance not found:
+    return disable
+
+  user = find user form attendance
+  if user found:
+    return disable
+
+  return enable
+  end
+
 - ### Given attendance
-  - create user attendance to admin attendance
-  - send a success message
+  start
+  attendance = find live admin attendance
+  if attendance not found:
+    return 400 error
+  
+  userAttendance = save user attendance model to attendance
+  return 201
+  end
+
 - ### Get Users
-  - find all users from database
-  - send users
+  start
+  users = find all users
+  return users
+  end
+
 - ### Get User by ID
-  - id = params
-  - find user from database
-  - if user not found - send not found error
-  - send user
+  start
+  id = req.params
+
+  user = find user with id
+  if user not found:
+    return 400 error
+
+  return user
+  end
+
 - ### Create User
-  - name, email, password = input
-  - generate hash password
-  - create user with name, email and hash password
-  - save user to database
-  - send a success message with user
+  start
+  name, email, password = input()
+
+  hash = hash password
+  user = save name, email and hash to user model
+  
+  return 201
+  end
+
 - ### Update User
-  - name = input
-  - id = params
-  - find user by this id
-  - if user not found - send not found error
-  - update user.name with input name
-  - send a success message
+  start
+  name = input()
+  id = req.params
+
+  user = find user with id
+  if user not found:
+    return 400 error
+
+  user = update name to user model
+  return 201
+  end
+
 - ### Delete User
-  - id = params
-  - find user from database
-  - if user not found - send not found error
-  - delete user from database
-  - send a success message
+  start
+  id = req.params
+
+  user = find user with id
+  if user not found:
+    return 400 error
+
+  delete user from database
+  return 204
+  end
+
 - ### Get Profiles
-  - find all profiles from database
-  - send profiles
+  start
+  profiles = find all profiles
+  return profiles
+  end
+
 - ### Get Profile by ID
-  - id = user.id/params
-  - find profile from database
-  - if profile not found - send not found error
-  - send profile
+  start
+  id = req.params
+
+  profile = find profile with id
+  if profile not found:
+    return 400 error
+
+  return profile
+  end
+
 - ### Create Profile
-  - do later
+  [ ] do later
+
 - ### Update Profile
-  - fristName, lastName, phone, avatar = input
-  - id = user.id/params
-  - find user by this id
-  - if user not found - send not found error
-  - update profile info by given info
-  - send a success message
+  start
+  fristName, lastName, phone, avatar = input()
+  id = req.params
+
+  profile = find profile with id
+  if profile not found:
+    return 404 error
+
+  profile = update profile with given info
+  return 201
+  end
+
 - ### Delete Profile
-  - id = params
-  - find profile from database
-  - if profile not found - send not found error
-  - delete profile from database
-  - send a success message
+  start
+  id = req.params
+
+  profile = find profile with id
+  if profile not found:
+    return 400 error
+
+  delete profile from database
+  return 204
+  end
+
 - ### Get timesheet by userId
-  - id = params
-  - find all user timesheet by id from all admin timesheet
-  - if timesheet not found - send empty
-  - send user timesheet
+  start
+  id = req.params
+
+  timesheet = find all attendance with id
+  return timesheet
+  end
+
 - ### Enable Attendance
-  - create an admin attendance with time limit
-  - save to database
-  - send a success message
+  start
+  attendance = save new admin attendance
+  return 201
+  end
+
 - ### Disable Attendance
-  - id = params
-  - find attendance from database
-  - if attendance not found - send not found error
-  - disable attendance
-  - send a success message
+  start
+  id = req.params
+
+  attendance = find attendance with id
+  if attendance not found:
+    return 400 error
+
+  attendance = update attendance status to disable
+  return 201
+  end
+
 - ### Timesheet stats
-  - for individual attendance
-    - find live admin attendance
-    - find all user attendance from database by live attendance id
-    - if attendance not found - send empty
-    - send attendance list
-  - for individual user
-    - id = params
-    - find all user timesheet by id from all admin timesheet
-    - if timesheet not found - send empty
-    - send user timesheet
+  start
+  attendance = find live admin attendance
+
+  userAttendances = find all user attendance from attendance
+  return userAttendances
+  end
