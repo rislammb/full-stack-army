@@ -94,9 +94,9 @@ Admin Endpoints -
 - GET /timesheet/stats [private]
 
 ## TODO
-- [ x ] Create Models
-  - [ x ] User
-  - [ x ] Profile
+- [x] Create Models
+  - [x] User
+  - [x] Profile
   - [x] Admin Attendance
   - [x] Student Attendance
 - [ ] Authentication
