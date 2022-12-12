@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Poll details</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        font-size: 20px;
+      }
+      body {
+        max-width: 650px;
+        padding: 10px;
+        margin: auto;
+        background-color: #f1f1f1;
+      }
+      .card-item {
+        display: flex;
+        justify-content: space-between;
+        gap: 8px;
+        margin: 16px 0;
+      }
+      ul li {
+        display: flex;
+        justify-content: space-between;
+        gap: 8px;
+        margin: 8px 0;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Poll Details</h2>
+    <br />
+    <div class="card">
+      <div class="card-item">
+        <p>Title</p>
+        <p><%= poll.title %></p>
+      </div>
+      <div class="card-item">
+        <p>Description</p>
+        <p><%= poll.description %></p>
+      </div>
+
+      <div class="options">
+        <p>Submit your vote:</p>
+        <ul>
+          <% for (const res of result) { %>
+          <li>
+            <p><%= res.name %></p>
+            <p><%= res.vote %></p>
+            <p><%= res.percentage %>%</p>
+          </li>
+          <% } %>
+        </ul>
+      </div>
+    </div>
+  </body>
+</html>
