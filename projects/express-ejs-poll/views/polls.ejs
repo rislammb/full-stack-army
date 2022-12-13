@@ -5,43 +5,25 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Polls</title>
-    <style>
-      * {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-        font-size: 20px;
-      }
-      body {
-        max-width: 450px;
-        padding: 10px;
-        margin: auto;
-        background-color: #f1f1f1;
-      }
-      a {
-        text-decoration: none;
-      }
-      ul {
-        list-style-type: square;
-      }
-      ul li {
-        margin: 8px 0;
-        display: flex;
-        gap: 8px;
-        justify-content: space-between;
-      }
+    <link rel="stylesheet" href="./style.css" />
     </style>
   </head>
   <body>
-    <h2>Polls</h2>
-    <br />
+    <div class="container">
+      <div class="top-btn-group">
+        <a href="/">Home</a>
+        <a href="/create">Create</a>
+      </div>
+      <h2>Polls</h2>
+      <br />
     <ul>
       <% for (const p of polls) { %>
-      <li>
+        <li>
         <a href="polls/<%= p._id %>"><%= p.title %></a>
         <span><%= p.totalVote %></span>
       </li>
       <% } %>
     </ul>
+    </div>
   </body>
 </html>

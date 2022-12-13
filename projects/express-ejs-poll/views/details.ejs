@@ -5,58 +5,54 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Poll details</title>
-    <style>
-      * {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-        font-size: 20px;
-      }
-      body {
-        max-width: 650px;
-        padding: 10px;
-        margin: auto;
-        background-color: #f1f1f1;
-      }
-      .card-item {
-        display: flex;
-        justify-content: space-between;
-        gap: 8px;
-        margin: 16px 0;
-      }
-      ul li {
-        display: flex;
-        justify-content: space-between;
-        gap: 8px;
-        margin: 8px 0;
-      }
-    </style>
+    <link rel="stylesheet" href="./style.css" />
   </head>
   <body>
-    <h2>Poll Details</h2>
-    <br />
-    <div class="card">
-      <div class="card-item">
-        <p>Title</p>
-        <p><%= poll.title %></p>
+    <div class="container">
+      <div class="top-btn-group">
+        <a href="/polls">Back</a>
+        <form action="/polls/<%= poll.id %>/delete" method="post">
+          <button type="submit" class="delete-btn">Delete</button>
+        </form>
       </div>
-      <div class="card-item">
-        <p>Description</p>
-        <p><%= poll.description %></p>
-      </div>
+      <h2><%= poll.title %></h2>
+      <br />
+      <p><strong>Description:</strong> <%= poll.description %></p>
+      <p><strong>Total vote:</strong> <%= poll.totalVote %></p>
+      <form action="/polls/<%= poll._id %>" method="post">
+        <table class="details-table">
+          <thead>
+            <tr>
+              <th>Option</th>
+              <th class="text-right">Vote</th>
+              <th class="text-right">Resut</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% for (const res of result) { %>
+            <tr>
+              <td>
+                <input
+                  style="cursor: pointer"
+                  type="radio"
+                  name="option"
+                  value="<%= res._id %>"
+                  id="<%= res._id %>"
+                />
 
-      <div class="options">
-        <p>Submit your vote:</p>
-        <ul>
-          <% for (const res of result) { %>
-          <li>
-            <p><%= res.name %></p>
-            <p><%= res.vote %></p>
-            <p><%= res.percentage %>%</p>
-          </li>
-          <% } %>
-        </ul>
-      </div>
+                <label style="cursor: pointer" for="<%= res._id %>"
+                  ><%= res.name %></label
+                >
+              </td>
+              <td class="text-right"><%= res.vote %></td>
+              <td class="text-right"><%= res.percentage %> %</td>
+            </tr>
+            <% } %>
+          </tbody>
+        </table>
+        <br />
+        <button type="submit">Submit</button>
+      </form>
     </div>
   </body>
 </html>
