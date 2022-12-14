@@ -9,9 +9,9 @@
   </head>
   <body>
     <div class="container create">
-      <div class="top-btn-group">
-        <a href="/">Home</a>
-        <a href="/polls">Poll list</a>
+      <div class="btn-group">
+        <a href="/" class="btn btn-info">Home</a>
+        <a href="/polls" class="btn btn-primary">Poll list</a>
       </div>
       <h2>Create a poll</h2>
       <br />
@@ -33,10 +33,12 @@
             <input type="text" name="options" placeholder="option 2" />
           </div>
         </div>
-        <button id="addOption">Add more option</button>
+        <button class="btn btn-small btn-info" id="addOption">
+          Add more option
+        </button>
         <br />
         <br />
-        <button type="submit">Create</button>
+        <button class="btn btn-primary" type="submit">Create</button>
       </form>
     </div>
 

@@ -1,8 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=PT+Sans&display=swap');
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  background-color: #f1f1f1;
+  background-color: #fafafa;
+  font-family: 'PT Sans', sans-serif;
 }
 body {
   font-size: 18px;
@@ -23,13 +25,11 @@ textarea {
   padding: 5px 15px;
   border-radius: 5px;
   font-size: 18px;
+  border: 1px solid #999;
 }
-button {
-  font-size: 16px;
-  padding: 5px 15px;
-  outline: none;
-  border-radius: 5px;
-  cursor: pointer;
+input:not([type='radio']):focus,
+textarea:focus {
+  outline: 1px solid #0b80a0;
 }
 ul {
   list-style-type: square;
@@ -48,18 +48,40 @@ ul li:last-child {
   width: 95%;
   max-width: 450px;
   margin: 16px auto;
-  padding: 24px;
-  border-radius: 15px;
+  padding: 16px;
+  border-radius: 5px;
   box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.27), 2px 3px 5px rgba(0, 0, 0, 0.17);
 }
-.top-btn-group {
+.btn-group {
   display: flex;
   justify-content: space-between;
   font-size: 16px;
   text-align: right;
 }
-.top-btn-group .delete-btn {
-  color: #da631e;
+.btn {
+  font-size: 16px;
+  padding: 8px 16px;
+  outline: none;
+  border: none;
+  border-radius: 16px;
+  cursor: pointer;
+  color: #fafafa;
+  transition: all 0.23s ease-in-out;
+}
+.btn-small {
+  font-size: 14px;
+}
+.btn:hover {
+  opacity: 0.8;
+}
+.btn-primary {
+  background-color: #0080ff;
+}
+.btn-info {
+  background-color: #04873d;
+}
+.btn-danger {
+  background-color: #da631e;
 }
 .form-group {
   display: flex;
@@ -68,12 +90,18 @@ ul li:last-child {
   gap: 8px;
 }
 .details-table {
-  width: 100%;
+  min-width: 100%;
+  font-size: 14px;
 }
 .details-table th,
 td {
-  padding: 8px;
+  padding: 8px 4px;
 }
-.text-right {
+.details-table .text-right {
   text-align: right;
+}
+@media (min-width: 450px) {
+  .details-table {
+    font-size: 18px;
+  }
 }

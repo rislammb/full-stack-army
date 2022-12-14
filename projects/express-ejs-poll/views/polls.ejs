@@ -10,16 +10,16 @@
   </head>
   <body>
     <div class="container">
-      <div class="top-btn-group">
-        <a href="/">Home</a>
-        <a href="/create">Create</a>
+      <div class="btn-group">
+        <a href="/" class="btn btn-info">Home</a>
+        <a href="/create"  class="btn btn-primary">Create</a>
       </div>
       <h2>Polls</h2>
       <br />
     <ul>
       <% for (const p of polls) { %>
         <li>
-        <a href="polls/<%= p._id %>"><%= p.title %></a>
+        <strong><a href="polls/<%= p._id %>"><%= p.title %></a></strong>
         <span><%= p.totalVote %></span>
       </li>
       <% } %>

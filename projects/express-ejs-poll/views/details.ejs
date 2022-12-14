@@ -9,10 +9,10 @@
   </head>
   <body>
     <div class="container">
-      <div class="top-btn-group">
-        <a href="/polls">Back</a>
+      <div class="btn-group">
+        <a href="/polls" class="btn btn-info">Back</a>
         <form action="/polls/<%= poll.id %>/delete" method="post">
-          <button type="submit" class="delete-btn">Delete</button>
+          <button type="submit" class="btn btn-danger">Delete</button>
         </form>
       </div>
       <h2><%= poll.title %></h2>
@@ -51,7 +51,7 @@
           </tbody>
         </table>
         <br />
-        <button type="submit">Submit</button>
+        <button class="btn btn-primary" type="submit">Submit vote</button>
       </form>
     </div>
   </body>
