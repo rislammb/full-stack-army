@@ -26,6 +26,7 @@ textarea {
   border-radius: 5px;
   font-size: 18px;
   border: 1px solid #999;
+  flex: 1;
 }
 input:not([type='radio']):focus,
 textarea:focus {
@@ -60,7 +61,7 @@ ul li:last-child {
 }
 .btn {
   font-size: 16px;
-  padding: 8px 16px;
+  padding: 8px 20px;
   outline: none;
   border: none;
   border-radius: 16px;
@@ -69,7 +70,7 @@ ul li:last-child {
   transition: all 0.23s ease-in-out;
 }
 .btn-small {
-  font-size: 14px;
+  font-size: 13px;
 }
 .btn:hover {
   opacity: 0.8;
@@ -81,12 +82,21 @@ ul li:last-child {
   background-color: #04873d;
 }
 .btn-danger {
-  background-color: #da631e;
+  background-color: #da471e;
+}
+.btn:disabled {
+  cursor: inherit;
+  opacity: 0.5;
 }
 .form-group {
   display: flex;
   margin: 8px 0;
   flex-direction: column;
+  gap: 8px;
+}
+.input-group {
+  display: flex;
+  margin: 8px 0;
   gap: 8px;
 }
 .details-table {

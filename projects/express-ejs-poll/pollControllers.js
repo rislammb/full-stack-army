@@ -6,7 +6,9 @@ exports.pollGetController = (_req, res) => {
 
 exports.pollPostController = async (req, res) => {
   const { title, description, options } = req.body;
-  const modifyedOptions = options.map((opt) => opt && { name: opt, vote: 0 });
+  const modifyedOptions = options
+    .filter((opt) => opt && opt)
+    .map((opt) => ({ name: opt, vote: 0 }));
 
   const poll = new Poll({
     title,
