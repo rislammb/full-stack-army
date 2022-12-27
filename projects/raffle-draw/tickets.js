@@ -85,8 +85,11 @@ class TicketCollection {
    */
   updateById(id, body) {
     const ticket = this.findById(id);
-    ticket.username = body.username ?? ticket.username;
-    ticket.price = body.price ?? ticket.price;
+
+    if (ticket) {
+      ticket.username = body.username ?? ticket.username;
+      ticket.price = body.price ?? ticket.price;
+    }
 
     return ticket;
   }
@@ -99,12 +102,15 @@ class TicketCollection {
    */
   updateBulk(username, body) {
     const userTickets = this.findByUsername(username);
-    const updatedTickets = userTickets.map(
-      /**
-       * @param (Ticket) ticket
-       */
-      (ticket) => this.updateById(ticket.id, body)
-    );
+    let updatedTickets;
+    if (userTickets) {
+      updatedTickets = userTickets.map(
+        /**
+         * @param (Ticket) ticket
+         */
+        (ticket) => this.updateById(ticket.id, body)
+      );
+    }
 
     return updatedTickets;
   }
