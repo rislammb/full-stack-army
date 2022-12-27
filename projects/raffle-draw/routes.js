@@ -16,7 +16,7 @@ const {
 // router.put('/t/:id');
 // router.delete('/t/:id');
 
-router.get('/t/:id').get(findById).put(updateById).delete(deleteById);
+router.route('/t/:id').get(findById).put(updateById).delete(deleteById);
 
 router
   .route('/u/:username')

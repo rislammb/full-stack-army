@@ -17,7 +17,7 @@ app.use((_req, _res, next) => {
   next(error);
 });
 
-app.use((error, _req, res) => {
+app.use((error, _req, res, _next) => {
   if (error.status) {
     return res.status(error.status).json({ message: error.message });
   } else res.status(500).json({ message: 'Somethings went wrong!' });

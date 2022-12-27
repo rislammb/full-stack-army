@@ -3,22 +3,25 @@ const ticketCollection = require('./tickets');
 // ticket selling controllers
 exports.sellSingleTicket = (req, res) => {
   const { username, price } = req.body;
-  const ticket = ticketCollection.create(username, price);
-
-  res.status(201).json({
-    message: 'Ticket created successfully',
-    ticket,
-  });
+  if (username && price) {
+    const ticket = ticketCollection.create(username, price);
+    res.status(201).json({
+      message: 'Ticket created successfully',
+      ticket,
+    });
+  } else res.status(400).json({ message: 'Something wrong in your request!' });
 };
 
 exports.sellBulkTicket = (req, res) => {
   const { username, price, quantity } = req.body;
-  const tickets = ticketCollection.createBulk(username, price, quantity);
+  if (username && price && quantity) {
+    const tickets = ticketCollection.createBulk(username, price, quantity);
 
-  res.status(201).json({
-    message: 'Ticket created successfully',
-    tickets,
-  });
+    res.status(201).json({
+      message: 'Ticket created successfully',
+      tickets,
+    });
+  } else res.status(400).json({ message: 'Something wrong in your request!' });
 };
 
 // find tickets controlllers
@@ -28,7 +31,7 @@ exports.findAll = (_req, res) => {
 };
 
 exports.findById = (req, res) => {
-  const id = req.parama.id;
+  const id = req.params.id;
   const ticket = ticketCollection.findById(id);
 
   if (!ticket) {
@@ -40,9 +43,7 @@ exports.findByUsername = (req, res) => {
   const username = req.params.username;
   const tickets = ticketCollection.findByUsername(username);
 
-  if (!tickets) {
-    return res.status(404).json({ message: '404 not found!' });
-  } else res.status(200).json({ tickets, total: tickets.length });
+  res.status(200).json({ tickets, total: tickets.length });
 };
 
 // update controllers
