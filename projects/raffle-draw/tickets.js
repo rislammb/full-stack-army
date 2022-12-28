@@ -5,7 +5,9 @@ const tickets = Symbol('tickets');
 
 class TicketCollection {
   constructor() {
-    this[tickets] = [];
+    (async function () {
+      this[tickets] = await readFile();
+    }.bind(this));
   }
 
   /**
@@ -17,6 +19,7 @@ class TicketCollection {
   create(username, price) {
     const ticket = new Ticket(username, price);
     this[tickets].push(ticket);
+    writeFile(this[tickets]);
 
     return ticket;
   }
@@ -33,6 +36,7 @@ class TicketCollection {
     for (let i = 0; i < quantity; i++) {
       result.push(this.create(username, price));
     }
+    writeFile(this[tickets]);
 
     return result;
   }
@@ -89,6 +93,7 @@ class TicketCollection {
     if (ticket) {
       ticket.username = body.username ?? ticket.username;
       ticket.price = body.price ?? ticket.price;
+      writeFile(this[tickets]);
     }
 
     return ticket;
@@ -110,6 +115,7 @@ class TicketCollection {
          */
         (ticket) => this.updateById(ticket.id, body)
       );
+      writeFile(this[tickets]);
     }
 
     return updatedTickets;
@@ -132,6 +138,7 @@ class TicketCollection {
       return false;
     } else {
       this[tickets].splice(index, 1);
+      writeFile(this[tickets]);
       return true;
     }
   }
@@ -143,13 +150,16 @@ class TicketCollection {
    */
   deleteBulk(username) {
     const userTickets = this.findByUsername(username);
-    const deletedResult = userTickets.map(
-      /**
-       * @param {Ticket} ticket
-       */
-      (ticket) => this.deleteById(ticket.id)
-    );
-
+    let deletedResult;
+    if (userTickets) {
+      deletedResult = userTickets.map(
+        /**
+         * @param {Ticket} ticket
+         */
+        (ticket) => this.deleteById(ticket.id)
+      );
+      writeFile(this[tickets]);
+    }
     return deletedResult;
   }
 
