@@ -7,7 +7,7 @@ class TicketCollection {
   constructor() {
     (async function () {
       this[tickets] = await readFile();
-    }.bind(this));
+    }.call(this));
   }
 
   /**
@@ -93,6 +93,7 @@ class TicketCollection {
     if (ticket) {
       ticket.username = body.username ?? ticket.username;
       ticket.price = body.price ?? ticket.price;
+      ticket.updatedAt = new Date();
       writeFile(this[tickets]);
     }
 
@@ -138,6 +139,7 @@ class TicketCollection {
       return false;
     } else {
       this[tickets].splice(index, 1);
+
       writeFile(this[tickets]);
       return true;
     }
@@ -150,17 +152,26 @@ class TicketCollection {
    */
   deleteBulk(username) {
     const userTickets = this.findByUsername(username);
-    let deletedResult;
-    if (userTickets) {
-      deletedResult = userTickets.map(
+
+    if (userTickets.length > 0) {
+      const deletedResult = userTickets.map(
         /**
          * @param {Ticket} ticket
          */
-        (ticket) => this.deleteById(ticket.id)
+        (ticket) => {
+          this[tickets] = this[tickets].filter(
+            /**
+             * @param {Ticket} dbTicket
+             */
+            (dbTicket) => dbTicket.id !== ticket.id
+          );
+          return true;
+        }
       );
+
       writeFile(this[tickets]);
-    }
-    return deletedResult;
+      return deletedResult;
+    } else return [false];
   }
 
   /**
