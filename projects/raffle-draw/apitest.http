@@ -10,7 +10,7 @@ POST http://localhost:4000/api/v1/tickets
 Content-Type: application/json
 
 {
-  "username": "mamun",
+  "username": "masud",
   "price": 20
 }
 
@@ -22,7 +22,7 @@ Content-Type: application/json
 {
   "username": "abdullah",
   "price": 15,
-  "quantity": 2
+  "quantity": 7
 }
 
 ###
@@ -35,11 +35,11 @@ GET http://localhost:4000/api/v1/tickets/u/abdullah
 
 ###
 
-DELETE http://localhost:4000/api/v1/tickets/t/HbRFOfX5k
+DELETE http://localhost:4000/api/v1/tickets/t/UDUL0uxkq
 
 ###
 
-DELETE http://localhost:4000/api/v1/tickets/u/abdullah
+DELETE http://localhost:4000/api/v1/tickets/u/masud
 
 ###
 
@@ -50,11 +50,11 @@ Content-Type: application/json
 
 ###
 
-PUT http://localhost:4000/api/v1/tickets/u/masud
+PUT http://localhost:4000/api/v1/tickets/u/abdullah
 Content-Type: application/json
 
-{"username": "abdullah"}
+{"price": 50}
 
 ###
 
-GET http://localhost:4000/api/v1/tickets/draw?wc=2
+GET http://localhost:4000/api/v1/tickets/draw

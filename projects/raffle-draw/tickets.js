@@ -19,8 +19,8 @@ class TicketCollection {
   create(username, price) {
     const ticket = new Ticket(username, price);
     this[tickets].push(ticket);
-    writeFile(this[tickets]);
 
+    writeFile(this[tickets]);
     return ticket;
   }
 
@@ -34,10 +34,12 @@ class TicketCollection {
   createBulk(username, price, quantity) {
     const result = [];
     for (let i = 0; i < quantity; i++) {
-      result.push(this.create(username, price));
+      const ticket = new Ticket(username, price);
+      this[tickets].push(ticket);
+      result.push(ticket);
     }
-    writeFile(this[tickets]);
 
+    writeFile(this[tickets]);
     return result;
   }
 
@@ -108,18 +110,24 @@ class TicketCollection {
    */
   updateBulk(username, body) {
     const userTickets = this.findByUsername(username);
-    let updatedTickets;
+
     if (userTickets) {
-      updatedTickets = userTickets.map(
+      const updatedTickets = userTickets.map(
         /**
          * @param (Ticket) ticket
          */
-        (ticket) => this.updateById(ticket.id, body)
-      );
-      writeFile(this[tickets]);
-    }
+        (ticket) => {
+          ticket.username = body.username ?? ticket.username;
+          ticket.price = body.price ?? ticket.price;
+          ticket.updatedAt = new Date();
 
-    return updatedTickets;
+          return ticket;
+        }
+      );
+
+      writeFile(this[tickets]);
+      return updatedTickets;
+    } else return [];
   }
 
   /**
@@ -135,7 +143,7 @@ class TicketCollection {
       (ticket) => ticket.id === id
     );
 
-    if (index === -1) {
+    if (index < 0) {
       return false;
     } else {
       this[tickets].splice(index, 1);
@@ -159,13 +167,17 @@ class TicketCollection {
          * @param {Ticket} ticket
          */
         (ticket) => {
-          this[tickets] = this[tickets].filter(
+          const index = this[tickets].findIndex(
             /**
              * @param {Ticket} dbTicket
              */
-            (dbTicket) => dbTicket.id !== ticket.id
+            (dbTicket) => dbTicket.id === ticket.id
           );
-          return true;
+
+          if (index > -1) {
+            this[tickets].splice(index, 1);
+            return true;
+          }
         }
       );
 
@@ -180,10 +192,12 @@ class TicketCollection {
    * @returns {Ticket[]}
    */
   draw(winnerCount) {
-    const winnerIndexes = new Array(winnerCount);
+    const winnerIndexes = new Array(
+      this[tickets].length > winnerCount ? winnerCount : this[tickets].length
+    );
 
     let winnerIndex = 0;
-    while (winnerIndex < winnerCount) {
+    while (winnerIndex < winnerIndexes.length) {
       const ticketIndex = Math.floor(Math.random() * this[tickets].length);
       if (!winnerIndexes.includes(ticketIndex)) {
         winnerIndexes[winnerIndex++] = ticketIndex;
