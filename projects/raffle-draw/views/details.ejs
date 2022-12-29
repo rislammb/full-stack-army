@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ticket Details</title>
+  </head>
+  <body>
+    <h3>Ticket details</h3>
+
+    <div>
+      <li>
+        <p>
+          <strong><%= ticket.id %></strong>
+        </p>
+        <p>
+          <a href="tickets/u/<%= ticket.username %>"><%= ticket.username %></a>
+        </p>
+        <p><%= ticket.price %></p>
+        <p><%= new Date(ticket.createdAt).toLocaleString() %></p>
+        <p><%= new Date(ticket.updatedAt).toLocaleString() %></p>
+      </li>
+    </div>
+  </body>
+</html>

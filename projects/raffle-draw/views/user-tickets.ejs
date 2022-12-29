@@ -4,23 +4,19 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Home</title>
+    <title>User Tickets</title>
   </head>
   <body>
-    <h3>Home</h3>
-    <form action="/tickets/draw" method="get">
-      <button type="submit">Draw</button>
-    </form>
+    <h3><%= tickets[0].username %>'s Tickets</h3>
+
     <ul>
       <% for (const ticket of tickets) { %>
       <li>
-        <div>
+        <p>
           <a href="/tickets/t/<%= ticket.id %>"><%= ticket.id %></a>
-        </div>
-        <div>
-          <a href="tickets/u/<%= ticket.username %>"><%= ticket.username %></a>
-        </div>
-        <div><%= ticket.price %></div>
+        </p>
+        <p><%= ticket.username %></p>
+        <p><%= ticket.price %></p>
       </li>
       <% } %>
     </ul>
