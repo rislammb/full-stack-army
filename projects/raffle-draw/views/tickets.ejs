@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>All Tickets</title>
+  </head>
+  <body>
+    <h3>All Tickets</h3>
+    <form action="/tickets/draw" method="get">
+      <button type="submit">Draw</button>
+    </form>
+    <ul>
+      <% for (const ticket of tickets) { %>
+      <li>
+        <div>
+          <a href="/tickets/t/<%= ticket.id %>"><%= ticket.id %></a>
+        </div>
+        <div>
+          <a href="tickets/u/<%= ticket.username %>"><%= ticket.username %></a>
+        </div>
+        <div><%= ticket.price %></div>
+      </li>
+      <% } %>
+    </ul>
+    <div>
+      <p>Total tickets= <strong><%= total %></strong></p>
+    </div>
+  </body>
+</html>
