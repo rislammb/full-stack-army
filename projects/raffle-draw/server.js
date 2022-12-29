@@ -13,6 +13,10 @@ app.get('/health', (_req, res) => {
   res.status(200).json({ message: 'Success' });
 });
 
+app.get('/', (_req, res) => {
+  res.render('home');
+});
+
 app.use((_req, _res, next) => {
   const error = new Error('Resource Not Found!');
   error.status = 404;
