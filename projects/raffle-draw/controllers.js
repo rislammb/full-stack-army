@@ -27,7 +27,8 @@ exports.sellBulkTicket = (req, res) => {
 // find tickets controlllers
 exports.findAll = (_req, res) => {
   const tickets = ticketCollection.find();
-  res.status(200).json({ tickets, total: tickets.length });
+  // res.status(200).json({ tickets, total: tickets.length });
+  res.status(200).render('home');
 };
 
 exports.findById = (req, res) => {
