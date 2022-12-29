@@ -8,24 +8,8 @@
   </head>
   <body>
     <h3>Home</h3>
-    <form action="/tickets/draw" method="get">
-      <button type="submit">Draw</button>
-    </form>
-    <ul>
-      <% for (const ticket of tickets) { %>
-      <li>
-        <div>
-          <a href="/tickets/t/<%= ticket.id %>"><%= ticket.id %></a>
-        </div>
-        <div>
-          <a href="tickets/u/<%= ticket.username %>"><%= ticket.username %></a>
-        </div>
-        <div><%= ticket.price %></div>
-      </li>
-      <% } %>
-    </ul>
-    <div>
-      <p>Total tickets= <strong><%= total %></strong></p>
-    </div>
+    <br />
+    <br />
+    <a href="/tickets">View all Tickets</a>
   </body>
 </html>
