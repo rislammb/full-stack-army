@@ -27,7 +27,7 @@ Content-Type: application/json
 {
   "username": "abdullah",
   "price": 15,
-  "quantity": 7
+  "quantity": 2
 }
 
 ###
@@ -40,11 +40,11 @@ GET http://localhost:4000/api/v1/tickets/u/abdullah
 
 ###
 
-DELETE http://localhost:4000/api/v1/tickets/t/xxLC96Lt_7
+DELETE http://localhost:4000/api/v1/tickets/t/Vi1KC94b_
 
 ###
 
-DELETE http://localhost:4000/api/v1/tickets/u/masud
+DELETE http://localhost:4000/api/v1/tickets/u/abdullah
 
 ###
 
@@ -62,4 +62,4 @@ Content-Type: application/json
 
 ###
 
-GET http://localhost:4000/api/v1/tickets/draw
+GET http://localhost:4000/api/v1/tickets/draw?wc=5

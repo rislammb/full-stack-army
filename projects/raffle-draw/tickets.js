@@ -192,9 +192,10 @@ class TicketCollection {
    * @returns {Ticket[]}
    */
   draw(winnerCount) {
-    const winnerIndexes = new Array(
-      this[tickets].length > winnerCount ? winnerCount : this[tickets].length
-    );
+    const arrayLength =
+      this[tickets].length > +winnerCount ? +winnerCount : this[tickets].length;
+
+    const winnerIndexes = new Array(arrayLength);
 
     let winnerIndex = 0;
     while (winnerIndex < winnerIndexes.length) {
