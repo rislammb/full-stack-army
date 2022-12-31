@@ -4,23 +4,24 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Ticket Details</title>
+    <title>Ticket details</title>
+    <link rel="stylesheet" href="./style.css" />
   </head>
   <body>
-    <h3>Ticket details</h3>
-
-    <div>
-      <li>
-        <p>
-          <strong><%= ticket.id %></strong>
-        </p>
-        <p>
-          <a href="tickets/u/<%= ticket.username %>"><%= ticket.username %></a>
-        </p>
-        <p><%= ticket.price %></p>
-        <p><%= new Date(ticket.createdAt).toLocaleString() %></p>
-        <p><%= new Date(ticket.updatedAt).toLocaleString() %></p>
-      </li>
+    <div class="container">
+      <div class="btn-group">
+        <a href="/tickets" class="btn btn-info">Back</a>
+        <form action="/tickets/t/<%= ticket.id %>/delete" method="post">
+          <button type="submit" class="btn btn-danger">Delete</button>
+        </form>
+      </div>
+      <h2><%= ticket.id %></h2>
+      <br />
+      <p>
+        <strong>Username:</strong>
+        <a href="/tickets/u/<%= ticket.username %>"><%= ticket.username %></a>
+      </p>
+      <p><strong>Price:</strong> <%= ticket.price %></p>
     </div>
   </body>
 </html>

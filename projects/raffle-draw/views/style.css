@@ -1,0 +1,117 @@
+@import url('https://fonts.googleapis.com/css2?family=PT+Sans&display=swap');
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  background-color: #fafafa;
+  font-family: 'PT Sans', sans-serif;
+}
+body {
+  font-size: 18px;
+}
+h2 {
+  text-align: center;
+  margin: 8px 0;
+}
+a {
+  text-decoration: none;
+  color: #00a797;
+}
+p {
+  margin: 8px 0;
+}
+input,
+textarea {
+  padding: 5px 15px;
+  border-radius: 5px;
+  font-size: 18px;
+  border: 1px solid #999;
+  flex: 1;
+}
+input:not([type='radio']):focus,
+textarea:focus {
+  outline: 1px solid #0b80a0;
+}
+ul {
+  list-style-type: square;
+  list-style-position: inside;
+}
+ul li {
+  padding: 8px 0;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #aaa;
+}
+ul li:last-child {
+  border: none;
+}
+.container {
+  width: 95%;
+  max-width: 450px;
+  margin: 16px auto;
+  padding: 16px;
+  border-radius: 5px;
+  box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.27), 2px 3px 5px rgba(0, 0, 0, 0.17);
+}
+.btn-group {
+  display: flex;
+  justify-content: space-between;
+  font-size: 16px;
+  text-align: right;
+}
+.btn {
+  font-size: 16px;
+  padding: 8px 20px;
+  outline: none;
+  border: none;
+  border-radius: 16px;
+  cursor: pointer;
+  color: #fafafa;
+  transition: all 0.23s ease-in-out;
+}
+.btn-small {
+  font-size: 13px;
+}
+.btn:hover {
+  opacity: 0.8;
+}
+.btn-primary {
+  background-color: #0080ff;
+}
+.btn-info {
+  background-color: #04873d;
+}
+.btn-danger {
+  background-color: #da471e;
+}
+.btn:disabled {
+  cursor: inherit;
+  opacity: 0.5;
+}
+.form-group {
+  display: flex;
+  margin: 8px 0;
+  flex-direction: column;
+  gap: 8px;
+}
+.input-group {
+  display: flex;
+  margin: 8px 0;
+  gap: 8px;
+}
+.details-table {
+  min-width: 100%;
+  font-size: 14px;
+}
+.details-table th,
+td {
+  padding: 8px 4px;
+}
+.details-table .text-right {
+  text-align: right;
+}
+@media (min-width: 450px) {
+  .details-table {
+    font-size: 18px;
+  }
+}

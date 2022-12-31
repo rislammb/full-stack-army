@@ -4,28 +4,27 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>All Tickets</title>
+    <title>Tickets</title>
+    <link rel="stylesheet" href="./style.css" />
+    </style>
   </head>
   <body>
-    <h3>All Tickets</h3>
-    <form action="/tickets/draw" method="get">
-      <button type="submit">Draw</button>
-    </form>
+    <div class="container">
+      <div class="btn-group">
+        <a href="/" class="btn btn-info">Home</a>
+        <a href="/tickets/buy"  class="btn btn-primary">Buy</a>
+      </div>
+      <h2>Tickets</h2>
+      <br />
     <ul>
       <% for (const ticket of tickets) { %>
-      <li>
-        <div>
-          <a href="/tickets/t/<%= ticket.id %>"><%= ticket.id %></a>
-        </div>
-        <div>
-          <a href="tickets/u/<%= ticket.username %>"><%= ticket.username %></a>
-        </div>
-        <div><%= ticket.price %></div>
+        <li>
+        <strong><a href="/tickets/t/<%= ticket.id %>"><%= ticket.id %></a></strong>
+        <strong><a href="/tickets/u/<%= ticket.username %>"><%= ticket.username %></a></strong>
+        <span><%= ticket.price %></span>
       </li>
       <% } %>
     </ul>
-    <div>
-      <p>Total tickets= <strong><%= total %></strong></p>
     </div>
   </body>
 </html>

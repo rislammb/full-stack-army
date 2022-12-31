@@ -6,8 +6,7 @@ const app = express();
 app.set('view engine', 'ejs');
 app.use([morgan('dev'), cors(), express.json(), express.static('views')]);
 
-// app.use('/api/v1/tickets', require('./routes'));
-app.use('/tickets', require('./routes'));
+app.use('/tickets', require('./viewRoutes'));
 
 app.get('/health', (_req, res) => {
   res.status(200).json({ message: 'Success' });

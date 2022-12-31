@@ -12,6 +12,10 @@ exports.sellSingleTicket = (req, res) => {
   } else res.status(400).json({ message: 'Something wrong in your request!' });
 };
 
+exports.buyTicket = (req, res) => {
+  res.render('buy');
+};
+
 exports.sellBulkTicket = (req, res) => {
   const { username, price, quantity } = req.body;
   if (username && price && quantity) {
@@ -27,30 +31,33 @@ exports.sellBulkTicket = (req, res) => {
 // find tickets controlllers
 exports.findAll = (_req, res) => {
   const tickets = ticketCollection.find();
-  // res.status(200).json({ tickets, total: tickets.length });
   res.render('tickets', { tickets, total: tickets.length });
 };
 
 exports.findById = (req, res) => {
   const id = req.params.id;
-  const ticket = ticketCollection.findById(id);
 
-  if (!ticket) {
-    return res.status(404).json({ message: '404 not found!' });
-  } else {
-    // return res.status(200).json(ticket)
-    res.render('details', { ticket });
-  }
+  if (!id.includes('.css')) {
+    const ticket = ticketCollection.findById(id);
+
+    if (!ticket) {
+      return res.status(404).json({ message: '404 not found!' });
+    } else {
+      res.render('details', { ticket });
+    }
+  } else res.sendFile(__dirname + `/views/${id}`);
 };
 
 exports.findByUsername = (req, res) => {
   const username = req.params.username;
-  const tickets = ticketCollection.findByUsername(username);
 
-  if (tickets.length > 0) {
-    // return res.status(200).json({ tickets, total: tickets.length });
-    res.render('user-tickets', { tickets, total: tickets.length });
-  } else res.status(404).json({ message: '404 not found!' });
+  if (!username.includes('.css')) {
+    const tickets = ticketCollection.findByUsername(username);
+
+    if (tickets.length > 0) {
+      return res.render('user-tickets', { tickets, total: tickets.length });
+    } else return res.status(404).json({ message: '404 not found!' });
+  } else res.sendFile(__dirname + `/views/${username}`);
 };
 
 // update controllers
