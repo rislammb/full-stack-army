@@ -32,7 +32,7 @@ Content-Type: application/json
 
 ###
 
-GET http://localhost:4000/api/v1/tickets/t/Lxk1RYTHO
+GET http://localhost:4000/api/v1/tickets/t/xxLC96Lt_7
 
 ###
 
@@ -40,7 +40,7 @@ GET http://localhost:4000/api/v1/tickets/u/abdullah
 
 ###
 
-DELETE http://localhost:4000/api/v1/tickets/t/UDUL0uxkq
+DELETE http://localhost:4000/api/v1/tickets/t/xxLC96Lt_7
 
 ###
 
@@ -48,17 +48,17 @@ DELETE http://localhost:4000/api/v1/tickets/u/masud
 
 ###
 
-PUT http://localhost:4000/api/v1/tickets/t/1j1cvj7L3
+PUT http://localhost:4000/api/v1/tickets/t/0aTVCdlFp
 Content-Type: application/json
 
-{"username": "masud", "price": 25}
+{"username": "masud"}
 
 ###
 
 PUT http://localhost:4000/api/v1/tickets/u/abdullah
 Content-Type: application/json
 
-{"price": 50}
+{"price": 12}
 
 ###
 

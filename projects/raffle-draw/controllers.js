@@ -27,8 +27,7 @@ exports.sellBulkTicket = (req, res) => {
 // find tickets controlllers
 exports.findAll = (_req, res) => {
   const tickets = ticketCollection.find();
-  // res.status(200).json({ tickets, total: tickets.length });
-  res.render('tickets', { tickets, total: tickets.length });
+  res.status(200).json({ tickets, total: tickets.length });
 };
 
 exports.findById = (req, res) => {
@@ -38,8 +37,7 @@ exports.findById = (req, res) => {
   if (!ticket) {
     return res.status(404).json({ message: '404 not found!' });
   } else {
-    // return res.status(200).json(ticket)
-    res.render('details', { ticket });
+    return res.status(200).json(ticket);
   }
 };
 
@@ -48,8 +46,7 @@ exports.findByUsername = (req, res) => {
   const tickets = ticketCollection.findByUsername(username);
 
   if (tickets.length > 0) {
-    // return res.status(200).json({ tickets, total: tickets.length });
-    res.render('user-tickets', { tickets, total: tickets.length });
+    return res.status(200).json({ tickets, total: tickets.length });
   } else res.status(404).json({ message: '404 not found!' });
 };
 
@@ -94,6 +91,5 @@ exports.drawWinners = (req, res) => {
   const wc = req.query.wc ?? 3;
   const winners = ticketCollection.draw(wc);
 
-  // res.status(200).json(winners);
-  res.render('draw', { winners });
+  res.status(200).json(winners);
 };
