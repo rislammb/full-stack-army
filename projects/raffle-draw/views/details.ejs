@@ -10,18 +10,41 @@
   <body>
     <div class="container">
       <div class="btn-group">
-        <a href="/tickets" class="btn btn-info">Back</a>
+        <a href="/tickets" class="btn btn-info">Ticket List</a>
         <form action="/tickets/t/<%= ticket.id %>/delete" method="post">
           <button type="submit" class="btn btn-danger">Delete</button>
         </form>
       </div>
       <h2><%= ticket.id %></h2>
-      <br />
-      <p>
-        <strong>Username:</strong>
-        <a href="/tickets/u/<%= ticket.username %>"><%= ticket.username %></a>
-      </p>
-      <p><strong>Price:</strong> <%= ticket.price %></p>
+      <table class="details-table">
+        <thead>
+          <tr>
+            <th>Username</th>
+            <th>
+              :
+              <strong
+                ><a href="/tickets/u/<%= ticket.username %>"
+                  ><%= ticket.username %></a
+                ></strong
+              >
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Price</td>
+            <td>: <%= ticket.price %></td>
+          </tr>
+          <tr>
+            <td>Created At</td>
+            <td>: <%= new Date(ticket.createdAt).toLocaleString() %></td>
+          </tr>
+          <tr>
+            <td>Updated At</td>
+            <td>: <%= new Date(ticket.updatedAt).toLocaleString() %></td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </body>
 </html>

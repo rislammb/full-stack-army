@@ -5,17 +5,44 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Winners</title>
+    <link rel="stylesheet" href="./style.css" />
   </head>
   <body>
-    <h2>Winners</h2>
-    <ul>
-      <% for (const winner of winners) { %>
-      <li>
-        <p><%= winner.id %></p>
-        <p><%= winner.username %></p>
-        <p><%= winner.price %></p>
-      </li>
-      <% } %>
-    </ul>
+    <div class="container">
+      <div class="btn-group">
+        <a href="/tickets" class="btn btn-primary">Ticket list</a>
+      </div>
+      <h2>Winners</h2>
+      <div style="overflow: auto">
+        <table class="details-table">
+          <thead>
+            <tr>
+              <th>Position</th>
+              <th>Number</th>
+              <th>Username</th>
+              <th>Price</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% for (let i = 0; i < winners.length; i++) { %>
+            <tr>
+              <td>
+                <strong><%= i + 1 %></strong>
+              </td>
+              <td>
+                <strong
+                  ><a href="/tickets/t/<%= winners[i].id %>"
+                    ><%= winners[i].id %></a
+                  ></strong
+                >
+              </td>
+              <td><%= winners[i].username %></td>
+              <td class="text-right"><%= winners[i].price %></td>
+            </tr>
+            <% } %>
+          </tbody>
+        </table>
+      </div>
+    </div>
   </body>
 </html>

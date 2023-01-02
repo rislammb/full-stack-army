@@ -4,7 +4,17 @@ const cors = require('cors');
 
 const app = express();
 app.set('view engine', 'ejs');
-app.use([morgan('dev'), cors(), express.json(), express.static('views')]);
+app.use([
+  morgan('dev'),
+  cors(),
+  express.json(),
+  express.urlencoded({ extended: true }),
+  express.static('views'),
+  (req, res, next) =>
+    req.path.includes('.css')
+      ? res.sendFile(__dirname + '/views/style.css')
+      : next(),
+]);
 
 app.use('/tickets', require('./viewRoutes'));
 
@@ -16,10 +26,11 @@ app.get('/', (_req, res) => {
   res.render('home');
 });
 
-app.use((_req, _res, next) => {
+app.use((_req, res, _next) => {
   const error = new Error('Resource Not Found!');
   error.status = 404;
-  next(error);
+  // next(error);
+  res.render('not-found');
 });
 
 app.use((error, _req, res, _next) => {

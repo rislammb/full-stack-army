@@ -6,27 +6,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>User Tickets</title>
     <link rel="stylesheet" href="./style.css" />
-    </style>
   </head>
   <body>
     <div class="container">
       <div class="btn-group">
-        <a href="/tickets" class="btn btn-info">Back</a>
-        <form action="/tickets/u/<%= tickets[0].username %>/delete" method="post">
+        <a href="/tickets" class="btn btn-info">Ticket list</a>
+        <form
+          action="/tickets/u/<%= tickets[0].username %>/delete"
+          method="post"
+        >
           <button type="submit" class="btn btn-danger">Delete</button>
         </form>
       </div>
       <h2>User Tickets</h2>
-      <br />
-    <ul>
-      <% for (const ticket of tickets) { %>
-        <li>
-        <strong><a href="/tickets/t/<%= ticket.id %>"><%= ticket.id %></a></strong>
-        <strong><a href="/tickets/u/<%= ticket.username %>"><%= ticket.username %></a></strong>
-        <span><%= ticket.price %></span>
-      </li>
-      <% } %>
-    </ul>
+      <table class="details-table">
+        <thead>
+          <tr>
+            <th>Number</th>
+            <th>Username</th>
+            <th>Price</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% for (const ticket of tickets) { %>
+          <tr>
+            <td>
+              <strong
+                ><a href="/tickets/t/<%= ticket.id %>"
+                  ><%= ticket.id %></a
+                ></strong
+              >
+            </td>
+            <td><%= ticket.username %></td>
+            <td class="text-right"><%= ticket.price %></td>
+          </tr>
+          <% } %>
+        </tbody>
+      </table>
     </div>
   </body>
 </html>

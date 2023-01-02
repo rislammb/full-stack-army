@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Buy Ticket</title>
-    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <div class="container create">
@@ -15,33 +15,27 @@
       </div>
       <h2>Buy Ticket</h2>
       <br />
-      <!-- <form action="/create" method="post">
+      <form action="/tickets/buy" method="post">
         <div class="form-group">
-          <label for="title">Title</label>
-          <input type="text" name="title" id="title" />
+          <label for="username">Username</label>
+          <input
+            type="text"
+            placeholder="babul"
+            name="username"
+            id="username"
+          />
         </div>
         <div class="form-group">
-          <label for="description">Description</label>
-          <textarea name="description" id="description"></textarea>
+          <label for="price">Price</label>
+          <input name="price" placeholder="20" id="price" />
         </div>
-        <div id="options">
-          <p>Options</p>
-          <div class="input-group">
-            <input type="text" name="options" placeholder="enter your option" />
-            <button class="btn btn-small btn-danger" disabled>x</button>
-          </div>
-          <div class="input-group">
-            <input type="text" name="options" placeholder="enter your option" />
-            <button class="btn btn-small btn-danger" disabled>x</button>
-          </div>
+        <div class="form-group">
+          <label for="quantity">Ticket Quantity</label>
+          <input name="quantity" placeholder="5" id="quantity" />
         </div>
-        <button class="btn btn-small btn-info" id="addOption">
-          Add more option
-        </button>
         <br />
-        <br />
-        <button class="btn btn-primary" type="submit">Create</button>
-      </form> -->
+        <button class="btn btn-primary" type="submit">Buy</button>
+      </form>
     </div>
 
     <script>

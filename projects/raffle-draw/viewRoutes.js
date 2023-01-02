@@ -1,8 +1,7 @@
 const router = require('express').Router();
 const {
-  sellSingleTicket,
+  sellTicket,
   buyTicket,
-  sellBulkTicket,
   findAll,
   findById,
   findByUsername,
@@ -13,17 +12,14 @@ const {
   drawWinners,
 } = require('./viewControllers');
 
-router.route('/t/:id').get(findById).put(updateById).delete(deleteById);
+router.route('/t/:id').get(findById).put(updateById);
+router.post('/t/:id/delete', deleteById);
 
-router
-  .route('/u/:username')
-  .get(findByUsername)
-  .put(updateByUsername)
-  .delete(deleteByUsername);
+router.route('/u/:username').get(findByUsername).put(updateByUsername);
+router.post('/u/:username/delete', deleteByUsername);
 
-router.get('/buy', buyTicket);
-router.post('/bulk', sellBulkTicket);
+router.route('/buy').get(buyTicket).post(sellTicket);
 router.get('/draw', drawWinners);
-router.route('/').get(findAll).post(sellSingleTicket);
+router.route('/').get(findAll);
 
 module.exports = router;
