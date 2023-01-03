@@ -34,7 +34,6 @@
           <tr>
             <th>Username</th>
             <th>
-              :
               <strong
                 ><a href="/tickets/u/<%= ticket.username %>"
                   ><%= ticket.username %></a
@@ -46,15 +45,15 @@
         <tbody>
           <tr>
             <td>Price</td>
-            <td>: <%= ticket.price %></td>
+            <td><%= ticket.price %></td>
           </tr>
           <tr>
             <td>Created At</td>
-            <td>: <%= new Date(ticket.createdAt).toLocaleString() %></td>
+            <td><%= new Date(ticket.createdAt).toLocaleString() %></td>
           </tr>
           <tr>
             <td>Updated At</td>
-            <td>: <%= new Date(ticket.updatedAt).toLocaleString() %></td>
+            <td><%= new Date(ticket.updatedAt).toLocaleString() %></td>
           </tr>
         </tbody>
       </table>
