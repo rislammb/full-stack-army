@@ -6,11 +6,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Winners</title>
     <link rel="stylesheet" href="./style.css" />
+    <script
+      src="https://kit.fontawesome.com/a9488ab298.js"
+      crossorigin="anonymous"
+    ></script>
   </head>
   <body>
     <div class="container">
       <div class="btn-group">
-        <a href="/tickets" class="btn btn-primary">Ticket list</a>
+        <a href="/tickets" class="btn btn-info"
+          ><i class="fa-solid fa-table-list"></i> Ticket list</a
+        >
+        <a href="/tickets/buy" class="btn btn-primary"
+          ><i class="fa-solid fa-bag-shopping"></i> Buy ticket</a
+        >
       </div>
       <h2>Winners</h2>
       <div style="overflow: auto">
@@ -27,7 +36,7 @@
             <% for (let i = 0; i < winners.length; i++) { %>
             <tr>
               <td>
-                <strong><%= i + 1 %></strong>
+                <i class="fa-solid fa-award"></i> <strong><%= i + 1 %></strong>
               </td>
               <td>
                 <strong

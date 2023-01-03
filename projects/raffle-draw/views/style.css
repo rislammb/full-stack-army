@@ -11,7 +11,8 @@ body {
 }
 h2 {
   text-align: center;
-  margin: 12px 0;
+  margin: 16px 0;
+  color: #a8008f;
 }
 a {
   text-decoration: none;
@@ -60,7 +61,7 @@ ul li:last-child {
   text-align: right;
 }
 .btn {
-  font-size: 16px;
+  font-size: 15px;
   padding: 8px 20px;
   outline: none;
   border: none;
@@ -73,16 +74,19 @@ ul li:last-child {
   font-size: 13px;
 }
 .btn:hover {
-  opacity: 0.8;
+  scale: 1.07;
 }
 .btn-primary {
-  background-color: #0080ff;
+  border: 1px solid #0080ff;
+  color: #0080ff;
 }
 .btn-info {
-  background-color: #04873d;
+  border: 1px solid #04873d;
+  color: #04873d;
 }
 .btn-danger {
-  background-color: #da471e;
+  border: 1px solid #da471e;
+  color: #da471e;
 }
 .btn:disabled {
   cursor: inherit;
@@ -114,6 +118,9 @@ td {
 .details-table tr th,
 tr:not(:last-child) td {
   border-bottom: 1px solid #aaa;
+}
+.details-table tr {
+  border: 3px solid salmon;
 }
 @media (min-width: 450px) {
   .details-table {

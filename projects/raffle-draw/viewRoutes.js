@@ -12,10 +12,10 @@ const {
   drawWinners,
 } = require('./viewControllers');
 
-router.route('/t/:id').get(findById).put(updateById);
+router.route('/t/:id').get(findById).post(updateById);
 router.post('/t/:id/delete', deleteById);
 
-router.route('/u/:username').get(findByUsername).put(updateByUsername);
+router.route('/u/:username').get(findByUsername).post(updateByUsername);
 router.post('/u/:username/delete', deleteByUsername);
 
 router.route('/buy').get(buyTicket).post(sellTicket);

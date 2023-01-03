@@ -57,8 +57,8 @@ exports.updateById = (req, res) => {
 
   const ticket = ticketCollection.updateById(id, req.body);
   if (!ticket) {
-    return res.status(404).json({ message: '404 not found!' });
-  } else res.status(200).json(ticket);
+    return res.render('not-found');
+  } else res.redirect('/tickets/t/' + id);
 };
 
 exports.updateByUsername = (req, res) => {
@@ -66,8 +66,8 @@ exports.updateByUsername = (req, res) => {
   const tickets = ticketCollection.updateBulk(username, req.body);
 
   if (!tickets) {
-    return res.status(404).json({ message: '404 not found!' });
-  } else res.status(200).json({ tickets, total: tickets.length });
+    return res.render('not-found');
+  } else res.redirect('/tickets/u/' + tickets[0].username);
 };
 
 // delete controllers

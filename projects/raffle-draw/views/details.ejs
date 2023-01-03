@@ -6,17 +6,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Ticket details</title>
     <link rel="stylesheet" href="./style.css" />
+    <script
+      src="https://kit.fontawesome.com/a9488ab298.js"
+      crossorigin="anonymous"
+    ></script>
   </head>
   <body>
     <div class="container">
       <div class="btn-group">
-        <a href="/tickets" class="btn btn-info">Ticket List</a>
+        <a href="/tickets" class="btn btn-info"
+          ><i class="fa-solid fa-table-list"></i> Ticket List</a
+        >
         <form action="/tickets/t/<%= ticket.id %>/delete" method="post">
-          <button type="submit" class="btn btn-danger">Delete</button>
+          <button type="submit" class="btn btn-danger">
+            <i class="fa-solid fa-trash"></i> Delete
+          </button>
         </form>
       </div>
-      <h2><%= ticket.id %></h2>
-      <table class="details-table">
+      <h2>Ticket number: <%= ticket.id %></h2>
+      <div style="text-align: right">
+        <button class="btn btn-primary btn-small" id="editBtn">
+          <i class="fa-regular fa-pen-to-square"></i> Edit
+        </button>
+      </div>
+      <table id="detailsTable" class="details-table">
         <thead>
           <tr>
             <th>Username</th>
@@ -45,6 +58,60 @@
           </tr>
         </tbody>
       </table>
+
+      <form
+        id="editForm"
+        style="display: none"
+        action="/tickets/t/<%= ticket.id %>"
+        method="post"
+      >
+        <div class="form-group">
+          <label for="username">Username</label>
+          <input
+            type="text"
+            value="<%= ticket.username %>"
+            name="username"
+            id="username"
+          />
+        </div>
+        <div class="form-group">
+          <label for="price">Price</label>
+          <input
+            type="text"
+            name="price"
+            value="<%= ticket.price %>"
+            id="price"
+          />
+        </div>
+        <br />
+        <div style="text-align: right">
+          <button class="btn btn-primary" type="submit">
+            <i class="fa-regular fa-floppy-disk"></i> Update
+          </button>
+        </div>
+      </form>
     </div>
+
+    <script>
+      const editBtn = document.getElementById('editBtn');
+      const detailsTable = document.getElementById('detailsTable');
+      const editForm = document.getElementById('editForm');
+
+      let editOpen = false;
+      editBtn.addEventListener('click', function (e) {
+        if (!editOpen) {
+          editBtn.innerHTML = '<i class="fa-solid fa-xmark"></i> Cancel';
+          detailsTable.style.display = 'none';
+          editForm.style.display = 'block';
+          editOpen = true;
+        } else {
+          editBtn.innerHTML =
+            '<i class="fa-regular fa-pen-to-square"></i> Edit';
+          detailsTable.style.display = 'inline-table';
+          editForm.style.display = 'none';
+          editOpen = false;
+        }
+      });
+    </script>
   </body>
 </html>

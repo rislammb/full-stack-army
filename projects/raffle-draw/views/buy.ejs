@@ -6,12 +6,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Buy Ticket</title>
     <link rel="stylesheet" href="style.css" />
+    <script
+      src="https://kit.fontawesome.com/a9488ab298.js"
+      crossorigin="anonymous"
+    ></script>
   </head>
   <body>
     <div class="container create">
       <div class="btn-group">
-        <a href="/" class="btn btn-info">Home</a>
-        <a href="/tickets" class="btn btn-primary">Ticket list</a>
+        <a href="/" class="btn btn-info"
+          ><i class="fa-solid fa-house"></i> Home</a
+        >
+        <a href="/tickets" class="btn btn-primary"
+          ><i class="fa-solid fa-table-list"></i> Ticket list</a
+        >
       </div>
       <h2>Buy Ticket</h2>
       <br />
@@ -27,51 +35,19 @@
         </div>
         <div class="form-group">
           <label for="price">Price</label>
-          <input name="price" placeholder="20" id="price" />
+          <input type="text" name="price" placeholder="20" id="price" />
         </div>
         <div class="form-group">
           <label for="quantity">Ticket Quantity</label>
           <input name="quantity" placeholder="5" id="quantity" />
         </div>
         <br />
-        <button class="btn btn-primary" type="submit">Buy</button>
+        <div style="text-align: right">
+          <button class="btn btn-primary" type="submit">
+            <i class="fa-solid fa-bag-shopping"></i> Buy
+          </button>
+        </div>
       </form>
     </div>
-
-    <script>
-      // const options = document.getElementById('options');
-      // const addOption = document.getElementById('addOption');
-
-      // addOption.addEventListener('click', (e) => {
-      //   e.preventDefault();
-
-      //   const newOption = addNewOption();
-      //   options.appendChild(newOption);
-      // });
-
-      // const addNewOption = () => {
-      //   const div = document.createElement('div');
-      //   div.className = 'input-group';
-
-      //   const input = document.createElement('input');
-      //   input.type = 'text';
-      //   input.name = 'options';
-      //   input.placeholder = 'enter your option';
-
-      //   const btn = document.createElement('button');
-      //   btn.className = 'btn btn-small btn-danger';
-      //   btn.id = 'deleteBtn';
-      //   btn.type = 'button';
-      //   btn.innerText = 'x';
-
-      //   btn.addEventListener('click', (e) => {
-      //     btn.parentElement.remove();
-      //   });
-
-      //   div.appendChild(input);
-      //   div.appendChild(btn);
-      //   return div;
-      // };
-    </script>
   </body>
 </html>
