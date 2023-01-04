@@ -1,14 +1,26 @@
 # Raffle Draw
 
-### Project Summary
+## Project Summary
 
 A ticket selling and raffle draw api where users can purchase tickets and draw to check winners.
 
-### For open live
+## For open live
 
-[click](https://raffle-draw-5j94.onrender.com)
+[Click](https://raffle-draw-5j94.onrender.com)
 
-### Requirements
+This live project initialy served from `viewServer.js` and this file import `viewRoutes.js` and `viewCntrollers.js` file. If you want REST api edit in `package.json` file. From-
+
+```json
+"start": "node viewServer.js"
+```
+
+to-
+
+```json
+"start": "node server.js"
+```
+
+## Requirements
 
 - sell new ticket
 - sell multiple tickets at once to a single user
