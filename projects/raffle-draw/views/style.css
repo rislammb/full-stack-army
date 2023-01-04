@@ -21,31 +21,18 @@ a {
 p {
   margin: 8px 0;
 }
-input,
-textarea {
+input {
   padding: 5px 15px;
   border-radius: 5px;
   font-size: 18px;
   border: 1px solid #999;
   flex: 1;
 }
-input:not([type='radio']):focus,
-textarea:focus {
-  outline: 1px solid #0b80a0;
+
+input:focus {
+  outline: 1px solid #4dff8e;
 }
-ul {
-  list-style-type: square;
-  list-style-position: inside;
-}
-ul li {
-  padding: 8px 0;
-  display: flex;
-  justify-content: space-between;
-  border-bottom: 1px solid #aaa;
-}
-ul li:last-child {
-  border: none;
-}
+
 .container {
   width: 95%;
   max-width: 450px;
@@ -57,12 +44,13 @@ ul li:last-child {
 .btn-group {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   font-size: 16px;
   text-align: right;
 }
 .btn {
   font-size: 15px;
-  padding: 8px 20px;
+  padding: 5px 12px;
   outline: none;
   border: none;
   border-radius: 16px;
@@ -107,6 +95,7 @@ ul li:last-child {
   min-width: 100%;
   font-size: 14px;
   text-align: left;
+  border-collapse: collapse;
 }
 .details-table th,
 td {
@@ -119,11 +108,16 @@ td {
 tr:not(:last-child) td {
   border-bottom: 1px solid #aaa;
 }
-.details-table tr {
-  border: 3px solid salmon;
+.border-none tr th,
+.border-none tr td {
+  border: none;
+  padding: 12px 4px;
 }
 @media (min-width: 450px) {
   .details-table {
     font-size: 18px;
+  }
+  .btn {
+    padding: 8px 20px;
   }
 }

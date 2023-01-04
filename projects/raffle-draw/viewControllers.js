@@ -89,8 +89,12 @@ exports.deleteByUsername = (req, res) => {
 
 // draw controller
 exports.drawWinners = (req, res) => {
-  const wc = req.query.wc ?? 3;
-  const winners = ticketCollection.draw(wc);
+  const validWc = req.query.wc
+    ? !isNaN(req.query.wc) && req.query.wc > 0
+      ? req.query.wc
+      : 3
+    : 3;
 
+  const winners = ticketCollection.draw(validWc);
   res.render('draw', { winners });
 };

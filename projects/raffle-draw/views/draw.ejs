@@ -17,9 +17,29 @@
         <a href="/tickets" class="btn btn-info"
           ><i class="fa-solid fa-table-list"></i> Ticket list</a
         >
-        <a href="/tickets/buy" class="btn btn-primary"
-          ><i class="fa-solid fa-bag-shopping"></i> Buy ticket</a
+
+        <form
+          action="/tickets/draw"
+          method="get"
+          style="display: flex; align-items: center"
         >
+          <div
+            class="form-group"
+            style="width: 80px; font-size: 12px; margin-right: 12px"
+          >
+            <label for="wc">Winner count</label>
+            <input
+              style="font-size: 12px"
+              type="text"
+              name="wc"
+              placeholder="3"
+              id="wc"
+            />
+          </div>
+          <button type="submit" class="btn btn-danger">
+            <i class="fa-solid fa-award"></i> Draw
+          </button>
+        </form>
       </div>
       <h2>Winners</h2>
       <div style="overflow: auto">

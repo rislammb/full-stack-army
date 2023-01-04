@@ -2,7 +2,7 @@
 
 ## Project Summary
 
-A ticket selling and raffle draw api where users can purchase tickets and draw to check winners.
+A ticket selling and raffle draw api where users can purchase tickets and draw to check winners. The focus here is on functionality, not design.
 
 ## For open live
 
