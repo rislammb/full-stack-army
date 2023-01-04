@@ -8,7 +8,7 @@ A ticket selling and raffle draw api where users can purchase tickets and draw t
 
 [Click](https://raffle-draw-5j94.onrender.com)
 
-This live project initialy served from `viewServer.js` and this file import `viewRoutes.js` and `viewCntrollers.js` file. If you want REST api edit in `package.json` file. From-
+This live project is initially served from `viewServer.js` and this file imports `viewRoutes.js` and `viewControllers.js` files. If you want the REST API, you need to edit the `package.json` file. From-
 
 ```json
 "start": "node viewServer.js"
