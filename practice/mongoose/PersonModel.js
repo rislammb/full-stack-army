@@ -5,6 +5,8 @@ const personSchema = new mongoose.Schema(
     firstName: {
       type: String,
       required: true,
+      index: true,
+      trim: true,
       minLength: [3, 'Minimum 3 characters long!'],
       maxLength: [10, 'Minimum 10 characters long!'],
     },
@@ -16,8 +18,10 @@ const personSchema = new mongoose.Schema(
     },
     e: {
       type: String,
-      get: (v) => v.toLowerCase(),
-      set: (v) => v.toLowerCase(),
+      // get: (v) => v.toLowerCase(),
+      // set: (v) => v.toLowerCase(),
+      lowercase: true,
+      unique: true,
       validate: {
         validator: function (v) {
           return v.endsWith('.com');
@@ -27,7 +31,16 @@ const personSchema = new mongoose.Schema(
       // set alias for e
       alias: 'email',
     },
-    bio: { age: { type: Number, min: 10 }, single: Boolean },
+    bio: {
+      age: { type: Number, min: 10 },
+      single: { type: Boolean, default: true },
+    },
+    certificates: [String],
+    lastPass: { type: Date, default: Date.now },
+    socialHandels: {
+      type: Map,
+      of: String,
+    },
   },
   {
     // instance methods: for find similar frist name

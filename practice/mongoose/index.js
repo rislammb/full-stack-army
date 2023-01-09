@@ -11,9 +11,14 @@ mongoose
     // 1 - create new person
     const person = new Person({
       firstName: 'Abdur',
-      lastName: 'Rahim',
+      lastName: 'Rahman',
       email: 'atalha@email.com',
       bio: { age: 11, single: false },
+      certificates: ['ssc', 'hsc'],
+      socialHandels: {
+        github: 'rislammb',
+        twitter: 'rislammb',
+      },
     });
 
     // 2 - find similar frist name person using methods
@@ -36,7 +41,7 @@ mongoose
     console.log('person fullname', person.fullName);
 
     // 5 - set person full name using virtuals
-    person.fullName = 'Abdur Rahman';
+    person.fullName = 'Abdur Rahim';
 
     // 6 - save person to database
     await person.save();
