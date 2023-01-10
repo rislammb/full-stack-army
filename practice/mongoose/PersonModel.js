@@ -1,8 +1,18 @@
 const mongoose = require('mongoose');
 
+const citizenScema = new mongoose.Schema({
+  idNumber: {
+    type: Number,
+    required: true,
+  },
+  dateOfBirth: Date,
+});
+
+const Citizen = new mongoose.model('Citizen', citizenScema);
+
 const personSchema = new mongoose.Schema(
   {
-    firstName: {
+    fristName: {
       type: String,
       required: true,
       index: true,
@@ -31,6 +41,10 @@ const personSchema = new mongoose.Schema(
       // set alias for e
       alias: 'email',
     },
+    // use nested schema
+    citizen: citizenScema,
+    // use referance of Citizen model
+    citizenRef: { type: mongoose.ObjectId, ref: 'Citizen' },
     bio: {
       age: { type: Number, min: 10 },
       single: { type: Boolean, default: true },
@@ -52,13 +66,13 @@ const personSchema = new mongoose.Schema(
     // statics: for find by frist name
     statics: {
       findByFristName(name) {
-        return this.find({ firstName: new RegExp(name, 'ig') });
+        return this.find({ firstName: new RegExp(name, 'i') });
       },
     },
     // query helpers: for query by frist name
     query: {
       byFristName(name) {
-        return this.where({ firstName: new RegExp(name, 'ig') });
+        return this.where({ firstName: new RegExp(name, 'i') });
       },
     },
     // virtuals: for get and set fullname
