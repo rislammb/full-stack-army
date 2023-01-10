@@ -9,23 +9,23 @@ mongoose
     console.log('Database connected');
 
     // // 1 - create new person
-    // const person = new Person({
-    //   fristName: 'Abdur',
-    //   lastName: 'Rahman',
-    //   email: 'atalwha2@email.com',
-    //   citizen: { idNumber: 12939244 },
-    //   citizenRef: '63bd1bc66fbba2e4366f4be2',
-    //   bio: { age: 11, single: false },
-    //   certificates: ['ssc', 'hsc'],
-    //   socialHandels: {
-    //     github: 'rislammb',
-    //     twitter: 'rislammb',
-    //   },
-    // });
+    const person = new Person({
+      fristName: 'Abdur',
+      lastName: 'Rahman',
+      email: 'arahman7@email.com',
+      citizen: { idNumber: 129392449384 },
+      citizenRef: '63bd1bc66fbba2e4366f4be2',
+      bio: { age: 19, gender: 'Male', single: false },
+      certificates: ['ssc', 'hsc', 'degree'],
+      socialHandels: {
+        github: 'arahman',
+        twitter: 'arahman',
+      },
+    });
 
-    // // 2 - save person to database
-    // await person.save();
-    // console.log('created person', person);
+    // 2 - save person to database
+    await person.save();
+    console.log('created person', person);
 
     // // 3 - find one person
     // const person = await Person.findOne({ fristName: 'Abdur' });
@@ -46,9 +46,9 @@ mongoose
     //   .gt(18);
     // console.log('frist name matched people age over 18', matchedPeopleOver18);
 
-    // // 5 - get all people
-    // const allPeople = await Person.find();
-    // console.log('all people', allPeople);
+    // 5 - get all people
+    const allPeople = await Person.find();
+    console.log('all people', allPeople);
 
     // // 6 - find similar frist name person using methods
     // person.findSimilarFirstName((_err, people) =>
@@ -72,22 +72,18 @@ mongoose
     // // 10 - set person full name using virtuals
     // person.fullName = 'Abdur Rahim';
 
-    // // 11 - delete one person from database
-    // await Person.deleteOne({ email: 'atalha@email.com' });
-
-    // // 12 - update one
+    // // 11 - update one
     // await Person.updateOne(
     //   { e: 'arahman@email.cm' },
     //   { e: 'arahman@email.com', fristName: 'Abdur' },
     //   { runValidators: true }
     // );
 
-    // // 13 - update many
+    // // 12 - update many
     // await Person.updateMany({}, { $set: { lastName: 'Rahman' } });
 
-    // // 11 - get all people
-    // const allPeople = await Person.find();
-    // console.log('all people', allPeople);
+    // // 13 - delete one person from database
+    // await Person.deleteOne({ email: 'atalha@email.com' });
 
     // // 14 - delete many person from database
     // await Person.deleteMany({ firstName: 'Abdur' });

@@ -46,8 +46,15 @@ const personSchema = new mongoose.Schema(
     // use referance of Citizen model
     citizenRef: { type: mongoose.ObjectId, ref: 'Citizen' },
     bio: {
-      age: { type: Number, min: 10 },
+      age: { type: Number, min: [10, 'Must be at least 10, got {VALUE}'] },
       single: { type: Boolean, default: true },
+      gender: {
+        type: String,
+        enum: {
+          values: ['Male', 'Female', 'Other'],
+          message: '{VALUE} is not supperted for gender!',
+        },
+      },
     },
     certificates: [String],
     lastPass: { type: Date, default: Date.now },
