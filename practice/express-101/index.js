@@ -1,25 +1,39 @@
 const express = require('express');
-const fs = require('fs');
+const { homeController } = require('./controller');
 
 const app = express();
 
-app.get('/', (req, res) => {
-  fs.readFile('./pages/index.html', (err, data) => {
-    if (err) {
-      res.send('<h2>Something went wrong!</h2>');
-    } else {
-      res.write(data);
-      res.end();
-    }
-  });
+app.use(express.static('./public'));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(globalMiddleware);
+app.use(require('./routes'));
+
+app.get('/', localMiddleware, homeController);
+
+app.use((_req, _res, next) => {
+  const error = new Error('<h2>404 Not Found!</h2>');
+  error.status = 404;
+  next(error);
 });
 
-app.get('/about', (req, res) => {
-  res.send('About route');
+app.use((err, _req, res, _next) => {
+  console.log('Error', err);
+  if (err.status) {
+    return res.status(err.status).send(err.message);
+  } else res.status(500).send('<h2>Somthing went wrong!</h2>');
 });
 
-app.get('/help', (req, res) => {
-  res.send('Help route');
-});
+function globalMiddleware(req, res, next) {
+  console.log(`${req.method}: ${req.url} - global middleware`);
+  if (req.query.bad) {
+    return res.status(400).send('<h2>Bad request!</h2>');
+  } else next();
+}
+
+function localMiddleware(req, res, next) {
+  console.log(`local middleware`);
+  next();
+}
 
 app.listen(4000, () => console.log('Server listening on port 4000'));
