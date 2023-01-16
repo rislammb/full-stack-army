@@ -1,8 +1,10 @@
 const express = require('express');
 const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 
 const connectDB = require('./db');
 const User = require('./models/User');
+const authenticate = require('./middleware/authenticate');
 
 const app = express();
 app.use(express.json());
@@ -53,12 +55,23 @@ app.post('/login', async (req, res, next) => {
     if (!isMatch) {
       return res.status(400).json({ message: 'Invalid Credentials!' });
     }
-
     delete user._doc.password;
-    res.status(200).json({ message: 'Login Successfull', user });
+
+    const token = jwt.sign(user._doc, 'secret-key', { expiresIn: '2h' });
+    res.status(200).json({ message: 'Login Successfull', token });
   } catch (e) {
     next(e);
   }
+});
+
+app.get('/private', authenticate, (req, res) => {
+  console.log('req user', req.user);
+
+  res.status(200).json({ message: 'I am private route' });
+});
+
+app.get('/public', (req, res) => {
+  res.status(200).json({ message: 'I am public route' });
 });
 
 app.get('/', (_req, res) => {
@@ -66,7 +79,7 @@ app.get('/', (_req, res) => {
 });
 
 app.use((err, _req, res, _next) => {
-  console.log(err);
+  console.log('Error from global: ', err);
   res.status(500).json({ message: 'Server error occurred!' });
 });
 
