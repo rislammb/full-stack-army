@@ -9,6 +9,7 @@ Student can see their own time logs and attend button when enabled.
 ## Functional Requirements
 
 ### Admin
+
 - Admin can create student
 - Admin can delete, update or check students information
 - Admin can change status of a student
@@ -17,6 +18,7 @@ Student can see their own time logs and attend button when enabled.
 - Admin can check stats of a given day
 
 ### Student
+
 - Student can register themselves
 - There will be following account status for a student -
   - Pending
@@ -38,11 +40,12 @@ Student can see their own time logs and attend button when enabled.
 - Active users can participate in attendance system
 - User can logout
 
-
 ## Requirements Analysis
 
 ### Models
+
 User model -
+
 - Name
 - Email
 - Password
@@ -50,6 +53,7 @@ User model -
 - Account status
 
 Profile model -
+
 - Frist name
 - Last name
 - Phone no
@@ -57,17 +61,21 @@ Profile model -
 - UserId
 
 StudentAttendace model -
+
 - userId
 - CreatedAt: DateTime
 - AdminAttendanceId
 
 AdminAttendace model -
+
 - CreatedAt: DateTime
 - Status
 - Time limit
 
 ### Endpoints/Route
+
 Student Endpoints -
+
 - POST /auth/register [public]
 - POST /auth/login [public]
 - PUT /auth/change-password [private]
@@ -78,6 +86,7 @@ Student Endpoints -
 - GET /attendance [private]
 
 Admin Endpoints -
+
 - GET /users [private]
 - GET /users/:userId [private]
 - POST /users [private]
@@ -94,25 +103,26 @@ Admin Endpoints -
 - GET /timesheet/stats [private]
 
 ## TODO
+
 - [x] Create Models
   - [x] User
   - [x] Profile
   - [x] Admin Attendance
   - [x] Student Attendance
 - [ ] Authentication
-  - [ ] Registration
-  - [ ] Login
+  - [x] Registration
+  - [x] Login
   - [ ] Change password
 - [ ] Middleware
-  - [ ] Authenticate
+  - [x] Authenticate
   - [ ] Authorize
 - [ ] Timesheet And Attendance
   - [ ] Get user timesheet
   - [ ] Get attendance status
   - [ ] Given attendance
 - [ ] User CURD
-  - [ ] Get User
-  - [ ] Get User by ID
+  - [x] Get User
+  - [x] Get User by ID
   - [ ] Create User
   - [ ] Update User
   - [ ] Delete User
@@ -129,19 +139,19 @@ Admin Endpoints -
 - [ ] Generate stats
   - [ ] Timesheet stats
 
-
 ## Pseudo code
 
 - ### Registration
+
   start
   name, email, password = input()
 
   if name or email or password invalid:
-    return 400 error
+  return 400 error
 
   user = find user with email
   if user found:
-    return 400 error
+  return 400 error
 
   hash = hash password
   user = save name, email and hash to user model
@@ -149,32 +159,34 @@ Admin Endpoints -
   end
 
 - ### Login
+
   start
   email, password = input()
 
   user = find user with email
   if user not found:
-    return 400 error
+  return 400 error
 
   if password not equal to user.hash
-    return 400 error
+  return 400 error
 
   token = generate token using user info
   return token
   end
 
 - ### Change password
+
   - for logged user
     start
     id = token
 
     user = find user with id
     if user not found:
-      return 400 error
-    
+    return 400 error
+
     password = input()
     if password invalid:
-      return 400 error
+    return 400 error
 
     hash = hash password
     user = update hash to user model
@@ -187,11 +199,11 @@ Admin Endpoints -
 
     user = find user with email
     if user not found:
-      return 400 error
+    return 400 error
 
     password = input()
     if password invalid:
-      return 400 error
+    return 400 error
 
     hash = hash password
     user = update hash to user model
@@ -199,37 +211,40 @@ Admin Endpoints -
     end
 
 - ### Authenticate middleware
+
   start
   token = req.headers
 
   if token not found:
-    return 401 error
-  
+  return 401 error
+
   validate token with time
   if token invalid:
-    return 401 error
-  
+  return 401 error
+
   id = token()
   user = find user with id
   if user not found:
-    return 401 error
+  return 401 error
 
   req.body.user = user
   next()
   end
 
 - ### Authorize middleware
+
   start
   user = req.body
 
   roles = user.roles
   if permitted role not found:
-    return 403 error
+  return 403 error
 
   next()
   end
 
 - ### Get user timesheet
+
   start
   id = user
 
@@ -238,126 +253,139 @@ Admin Endpoints -
   end
 
 - ### Get attendance status
+
   start
   attendance = find live admin attendance
   if attendance not found:
-    return disable
+  return disable
 
   user = find user form attendance
   if user found:
-    return disable
+  return disable
 
   return enable
   end
 
 - ### Given attendance
+
   start
   attendance = find live admin attendance
   if attendance not found:
-    return 400 error
-  
+  return 400 error
+
   userAttendance = save user attendance model to attendance
   return 201
   end
 
 - ### Get Users
+
   start
   users = find all users
   return users
   end
 
 - ### Get User by ID
+
   start
   id = req.params
 
   user = find user with id
   if user not found:
-    return 400 error
+  return 400 error
 
   return user
   end
 
 - ### Create User
+
   start
   name, email, password = input()
 
   hash = hash password
   user = save name, email and hash to user model
-  
+
   return 201
   end
 
 - ### Update User
+
   start
   name = input()
   id = req.params
 
   user = find user with id
   if user not found:
-    return 400 error
+  return 400 error
 
   user = update name to user model
   return 201
   end
 
 - ### Delete User
+
   start
   id = req.params
 
   user = find user with id
   if user not found:
-    return 400 error
+  return 400 error
 
   delete user from database
   return 204
   end
 
 - ### Get Profiles
+
   start
   profiles = find all profiles
   return profiles
   end
 
 - ### Get Profile by ID
+
   start
   id = req.params
 
   profile = find profile with id
   if profile not found:
-    return 400 error
+  return 400 error
 
   return profile
   end
 
 - ### Create Profile
+
   [ ] do later
 
 - ### Update Profile
+
   start
   fristName, lastName, phone, avatar = input()
   id = req.params
 
   profile = find profile with id
   if profile not found:
-    return 404 error
+  return 404 error
 
   profile = update profile with given info
   return 201
   end
 
 - ### Delete Profile
+
   start
   id = req.params
 
   profile = find profile with id
   if profile not found:
-    return 400 error
+  return 400 error
 
   delete profile from database
   return 204
   end
 
 - ### Get timesheet by userId
+
   start
   id = req.params
 
@@ -366,24 +394,27 @@ Admin Endpoints -
   end
 
 - ### Enable Attendance
+
   start
   attendance = save new admin attendance
   return 201
   end
 
 - ### Disable Attendance
+
   start
   id = req.params
 
   attendance = find attendance with id
   if attendance not found:
-    return 400 error
+  return 400 error
 
   attendance = update attendance status to disable
   return 201
   end
 
 - ### Timesheet stats
+
   start
   attendance = find live admin attendance
 
