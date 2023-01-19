@@ -4,8 +4,8 @@ const userSchema = new Schema({
   name: {
     type: String,
     required: true,
-    minLength: 3,
-    maxLength: 15,
+    minLength: [3, 'Name at least 3 characters long!'],
+    maxLength: [35, 'Name maximum 35 characters long!'],
   },
   email: {
     type: String,
@@ -16,12 +16,12 @@ const userSchema = new Schema({
           v
         );
       },
-      message: (props) => `Invalid email: ${props.value}`,
+      message: (props) => `${props.value} is invalid email!`,
     },
   },
   password: {
     type: String,
-    minLength: [6, 'Password is too short'],
+    minLength: [6, 'Password at least 6 characters long!'],
     required: true,
   },
   roles: {

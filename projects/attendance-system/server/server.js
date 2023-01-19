@@ -23,8 +23,16 @@ app.get('/', (_req, res) => {
 });
 
 app.use((err, _req, res, _next) => {
-  console.log('Error from global: ', err);
-  res
+  if (err.name === 'ValidationError') {
+    const errors = Object.keys(err.errors).reduce((acc, key) => {
+      acc[key] = err.errors[key]?.message;
+      return acc;
+    }, {});
+
+    return res.status(err.status ?? 500).json({ errors });
+  }
+
+  return res
     .status(err.status ?? 500)
     .json({ message: err.message ?? 'Server error occurred!' });
 });

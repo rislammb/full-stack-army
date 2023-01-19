@@ -91,6 +91,7 @@ Admin Endpoints -
 - GET /users/:userId [private]
 - POST /users [private]
 - PATCH /users/:userId [private]
+- PUT /users/:userId [private]
 - DELETE /users/:userId [private]
 - GET /profiles [private]
 - GET /profiles/:userId [private]
@@ -120,12 +121,12 @@ Admin Endpoints -
   - [ ] Get user timesheet
   - [ ] Get attendance status
   - [ ] Given attendance
-- [ ] User CURD
+- [x] User CURD
   - [x] Get User
   - [x] Get User by ID
-  - [ ] Create User
-  - [ ] Update User
-  - [ ] Delete User
+  - [x] Create User
+  - [x] Update User
+  - [x] Delete User
 - [ ] Profile CURD
   - [ ] Get Profile
   - [ ] Get Profile by ID
@@ -330,7 +331,7 @@ Admin Endpoints -
   if user not found:
   return 400 error
 
-  delete user from database
+  delete user and all associated data from database
   return 204
   end
 

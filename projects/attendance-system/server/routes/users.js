@@ -10,13 +10,19 @@ router.get('/:userId', userController.getUserById);
  * Update user by id
  * @method PUT
  */
-router.put('/:userId');
+router.put('/:userId', userController.putUserById);
 
 /**
  * Update user by id
  * @method PATCH
  */
-router.patch('/:userId');
+router.patch('/:userId', userController.patchUserById);
+
+/**
+ * Delete user by id
+ * @method DELETE
+ */
+router.delete('/:userId', userController.deleteUserById);
 
 /**
  * Get all users, include
@@ -33,6 +39,6 @@ router.get('/', userController.getUsers);
 /**
  * Create a new user
  */
-router.post('/', () => {});
+router.post('/', userController.postUser);
 
 module.exports = router;
