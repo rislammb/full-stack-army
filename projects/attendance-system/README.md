@@ -62,15 +62,16 @@ Profile model -
 
 StudentAttendace model -
 
+- AdminAttendanceId
 - userId
 - CreatedAt: DateTime
-- AdminAttendanceId
 
 AdminAttendace model -
 
-- CreatedAt: DateTime
-- Status
 - Time limit
+- Status
+- CreatedAt: DateTime
+- UpdatedAt: DateTime
 
 ### Endpoints/Route
 
@@ -79,11 +80,13 @@ Student Endpoints -
 - POST /auth/register [public]
 - POST /auth/login [public]
 - PUT /auth/change-password [private]
+
 - PATCH /profiles [private]
 - PATCH /profiles/avatar [private]
-- GET /timesheet [private]
-- GET /attendanceStatus [private]
-- GET /attendance [private]
+
+- GET /student/timesheet [private]
+- GET /student/attendance/status [private]
+- GET /student/attendance/:id [private]
 
 Admin Endpoints -
 
@@ -93,14 +96,18 @@ Admin Endpoints -
 - PATCH /users/:userId [private]
 - PUT /users/:userId [private]
 - DELETE /users/:userId [private]
+
 - GET /profiles [private]
 - GET /profiles/:userId [private]
 - POST /profiles [private]
 - PATCH /profiles/:userId [private]
 - DELETE /profiles/:userId [private]
+
+- GET /admin/attendance/enable [private]
+- GET /admin/attendance/status [private]
+- GET /admin/attendance/disable [private]
+
 - GET /timesheet/:userId [private]
-- POST /attendance/enable [private]
-- GET /attendance/disable/:attendanceId [private]
 - GET /timesheet/stats [private]
 
 ## TODO
@@ -119,8 +126,8 @@ Admin Endpoints -
   - [ ] Authorize
 - [ ] Timesheet And Attendance
   - [ ] Get user timesheet
-  - [ ] Get attendance status
-  - [ ] Given attendance
+  - [x] Get attendance status
+  - [x] Given attendance
 - [x] User CURD
   - [x] Get User
   - [x] Get User by ID
@@ -135,8 +142,9 @@ Admin Endpoints -
   - [ ] Delete Profile
 - [ ] Admin control over attendance
   - [ ] Get timesheet by userId
-  - [ ] Enable Attendance
-  - [ ] Disable Attendance
+  - [x] Enable Attendance
+  - [x] Get Attendance Status
+  - [x] Disable Attendance
 - [ ] Generate stats
   - [ ] Timesheet stats
 
