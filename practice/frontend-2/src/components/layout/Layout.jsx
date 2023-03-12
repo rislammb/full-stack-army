@@ -1,6 +1,10 @@
+import { Link } from '@reach/router';
+
 import classes from './Layout.module.css';
 
 function Layout(props) {
+  const path = window.location.pathname;
+
   return (
     <div className={classes.app}>
       <nav className={classes.nav}>
@@ -9,9 +13,36 @@ function Layout(props) {
         </div>
         <div className={classes.menu}>
           <ul>
-            <li>Link one</li>
-            <li>Link two</li>
-            <li>Link three</li>
+            <li>
+              <Link
+                to='/'
+                className={
+                  path === '/' ? classes.navItemActive : classes.navItem
+                }
+              >
+                Home
+              </Link>
+            </li>
+            <li>
+              <Link
+                to='/about'
+                className={
+                  path === '/about' ? classes.navItemActive : classes.navItem
+                }
+              >
+                About
+              </Link>
+            </li>
+            <li>
+              <Link
+                to='/help'
+                className={
+                  path === '/help' ? classes.navItemActive : classes.navItem
+                }
+              >
+                Help
+              </Link>
+            </li>
           </ul>
         </div>
       </nav>

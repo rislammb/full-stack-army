@@ -18,6 +18,16 @@
   gap: 1rem;
 }
 
+.navItem {
+  color: #fff;
+  text-decoration: none;
+}
+.navItemActive {
+  color: #f27;
+  text-decoration: underline;
+  font-weight: bold;
+}
+
 .main {
   width: 70%;
   margin: 1rem auto;
