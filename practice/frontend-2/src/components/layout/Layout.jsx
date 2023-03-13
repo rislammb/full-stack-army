@@ -43,6 +43,16 @@ function Layout(props) {
                 Help
               </Link>
             </li>
+            <li>
+              <Link
+                to='/clock'
+                className={
+                  path === '/clock' ? classes.navItemActive : classes.navItem
+                }
+              >
+                Clock
+              </Link>
+            </li>
           </ul>
         </div>
       </nav>
