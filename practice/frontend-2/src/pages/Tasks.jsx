@@ -51,13 +51,14 @@ function Tasks() {
     setIdForEdit(null);
   }
 
-  let tasksForRender = null;
-  if (visibility === 'completed') {
-    tasksForRender = tasks.filter((task) => task.isCompleted);
-  } else if (visibility === 'running') {
-    tasksForRender = tasks.filter((task) => !task.isCompleted);
-  } else {
-    tasksForRender = tasks;
+  function getFilteredTasks() {
+    if (visibility === 'completed') {
+      return tasks.filter((task) => task.isCompleted);
+    } else if (visibility === 'running') {
+      return tasks.filter((task) => !task.isCompleted);
+    } else {
+      return tasks;
+    }
   }
 
   return (
@@ -67,7 +68,7 @@ function Tasks() {
         addNewTask={addNewTask}
         taskForEdit={
           idForEdit
-            ? tasksForRender.find((task) => task.id === idForEdit)
+            ? getFilteredTasks().find((task) => task.id === idForEdit)
             : undefined
         }
         editTask={editTask}
@@ -77,7 +78,7 @@ function Tasks() {
         handleChangeVisibility={handleChangeVisibility}
       />
       <ShowTasks
-        tasks={tasksForRender}
+        tasks={getFilteredTasks()}
         toggleComplete={toggleComplete}
         deleteTask={deleteTask}
         handleEditBtn={handleEditBtn}
